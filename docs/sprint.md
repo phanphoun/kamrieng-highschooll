@@ -9,36 +9,36 @@
 
 ## Product Backlog (28 issues)
 
-| # | Issue | MoSCoW | Pts | Sprint |
-|---|-------|--------|-----|--------|
-| 174 | US-01: Auth — Register & Login | Must | 5 | 1 |
-| 175 | US-02: Role-based Access Control | Must | 3 | 1 |
-| 176 | US-03: Home Page with Hero Slides | Must | 5 | 1 |
-| 177 | US-04: About Page CMS | Must | 3 | 1 |
-| 178 | US-05: Contact Form | Must | 3 | 1 |
-| 179 | US-06: Site Search | Should | 3 | 1 |
-| 180 | US-07: Site Map | Could | 2 | 1 |
-| 181 | US-08: Hero Slides Admin | Must | 2 | 1 |
-| 182 | Sprint 1 Chores: Layout, Components, Tooling | Chore | — | 1 |
-| 183 | US-09: View News | Must | 5 | 2 |
-| 184 | US-10: Manage News | Must | 5 | 2 |
-| 185 | US-11: View Gallery | Should | 5 | 2 |
-| 186 | US-12: Manage Gallery | Should | 5 | 2 |
-| 187 | US-13: Events Calendar | Must | 5 | 2 |
-| 188 | US-14: Activities | Should | 3 | 2 |
-| 189 | US-15: Achievements | Should | 3 | 2 |
-| 190 | US-16: Faculty Directory | Must | 5 | 3 |
-| 191 | US-17: Leadership Team | Should | 3 | 3 |
-| 192 | US-18: Downloads | Must | 3 | 3 |
-| 193 | US-19: Notices | Should | 3 | 3 |
-| 194 | US-20: Online Enrollment | Must | 8 | 3 |
-| 195 | US-21: Messages | Must | 5 | 4 |
-| 196 | US-22: Settings | Must | 3 | 4 |
-| 197 | US-23: Audit Logs | Should | 3 | 4 |
-| 198 | US-24: Statistics Dashboard | Should | 5 | 4 |
-| 199 | US-25: Bilingual i18n — Khmer/English | Must | 5 | 4 |
-| 200 | US-26: Donate Page | Could | 2 | 4 |
-| 201 | Sprint 4 Testing, Security & Deployment | Chore | — | 4 |
+| # | Issue | MoSCoW | Pts | Sprint | Acceptance Criteria |
+|---|-------|--------|-----|--------|-------------------|
+| 174 | US-01: Auth — Register & Login | Must | 5 | 1 | Given valid details, user registered and can log in; invalid credentials show error; logout redirects; password reset email sent |
+| 175 | US-02: Role-based Access Control | Must | 3 | 1 | Admin sees `/admin/*`; non-admin gets 403; unauthenticated redirected to login; public routes always accessible |
+| 176 | US-03: Home Page with Hero Slides | Must | 5 | 1 | Hero slideshow with images/text; auto-play every 5s; prev/next arrows; responsive; slides displayed in configured order |
+| 177 | US-04: About Page CMS | Must | 3 | 1 | Visitor sees history/mission/vision; admin edits reflect on public page; responsive on mobile |
+| 178 | US-05: Contact Form | Must | 3 | 1 | Valid submission saved; missing fields show validation; invalid email rejected; confirmation shown |
+| 179 | US-06: Site Search | Should | 3 | 1 | Query returns results (pages, news, events); no results shows message; empty query handled gracefully |
+| 180 | US-07: Site Map | Could | 2 | 1 | All public pages listed; links navigate correctly; new pages auto-appear |
+| 181 | US-08: Hero Slides Admin | Must | 2 | 1 | Create with image/text appears on home; edit reflects immediately; delete removes; reorder updates display |
+| 182 | Sprint 1 Chores | Chore | — | 1 | Layout with navbar/footer; admin sidebar + header; shared components consistent; responsive; `php artisan test` passes |
+| 183 | US-09: View News | Must | 5 | 2 | Paginated published list; full article with title/content/image/date; bilingual Khmer/English; empty state |
+| 184 | US-10: Manage News | Must | 5 | 2 | Bilingual CRUD; publish/unpublish; image upload; delete removes from public |
+| 185 | US-11: View Gallery | Should | 5 | 2 | Album grid; click album to see photos; click photo opens lightbox; responsive grid |
+| 186 | US-12: Manage Gallery | Should | 5 | 2 | Album CRUD; photo upload with thumbnails; reorder; delete removes from public |
+| 187 | US-13: Events Calendar | Must | 5 | 2 | Monthly calendar with event markers; click event sees details; prev/next month; admin CRUD reflects changes |
+| 188 | US-14: Activities | Should | 3 | 2 | List with images/descriptions; click for full details; admin CRUD reflects publicly |
+| 189 | US-15: Achievements | Should | 3 | 2 | List with title/description/date; paginated; admin CRUD reflects publicly |
+| 190 | US-16: Faculty Directory | Must | 5 | 3 | Grid with name/photo/position/subjects; search/filter updates results; admin CRUD; responsive single column on mobile |
+| 191 | US-17: Leadership Team | Should | 3 | 3 | Members with name/title/photo/bio; admin CRUD reflects publicly |
+| 192 | US-18: Downloads | Must | 3 | 3 | Categorized list with name/description; click downloads file; upload with type validation; correct category |
+| 193 | US-19: Notices | Should | 3 | 3 | List with title/date/content; expired notices auto-hidden; admin CRUD reflects publicly |
+| 194 | US-20: Online Enrollment | Must | 8 | 3 | Multi-step form; required fields validated; CAPTCHA blocks bots; admin manages submissions with status |
+| 195 | US-21: Messages | Must | 5 | 4 | Inbox with all submissions; full message with sender details; unread marked read on view; delete removes |
+| 196 | US-22: Settings | Must | 3 | 4 | School name updated site-wide; logo upload replaces current; contact info reflected on contact page/footer; changes persist |
+| 197 | US-23: Audit Logs | Should | 3 | 4 | Table of CRUD actions (user/action/model/timestamp); filterable by type/date; auto-logged on CRUD |
+| 198 | US-24: Statistics Dashboard | Should | 5 | 4 | Charts for enrollment/content counts; date filters update charts; loading state; empty state |
+| 199 | US-25: Bilingual i18n — Khmer/English | Must | 5 | 4 | Language switcher toggles km/en; preference persists across pages/sessions; all UI text translated |
+| 200 | US-26: Donate Page | Could | 2 | 4 | Donation info displayed (bank details, QR code); CMS-managed content editable by admin |
+| 201 | Sprint 4 Testing & Deploy | Chore | — | 4 | All tests pass; Lighthouse 90+; HTTPS + security headers; admin routes 403 for non-admin; CSRF active; queue + backup configured |
 
 ---
 
