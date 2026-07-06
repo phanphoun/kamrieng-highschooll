@@ -8,15 +8,11 @@ use Illuminate\Support\Facades\Route;
 
 // Authentication Routes
 Route::middleware('guest')->group(function () {
-    // Register (placeholder - will be fully implemented)
-    Route::get('/register', function () {
-        return redirect()->route('login');
-    })->name('register');
-    Route::post('/register', function () {
-        return redirect()->route('login');
-    });
+    Route::get('/register', [RegisteredUserController::class, 'create'])
+                ->name('register');
+    Route::post('/register', [RegisteredUserController::class, 'store']);
 
-    Route::get('/login', [AuthController::class, 'showLoginForm'])
+    Route::get('/login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
     Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
@@ -39,6 +35,6 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout'])
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 });
