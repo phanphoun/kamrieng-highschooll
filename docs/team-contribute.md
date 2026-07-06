@@ -2,6 +2,8 @@
 
 ## Agile Workflow
 
+**Project**: EduBridge Cambodia — Bilingual School CMS & Communications Platform
+
 We follow **Scrum** with 1-week sprints.
 
 ### Roles
@@ -296,9 +298,6 @@ app/
 ├── Http/
 │   ├── Controllers/
 │   │   ├── Admin/         — Admin panel controllers
-│   │   ├── Teacher/       — Teacher dashboard controllers
-│   │   ├── Student/       — Student dashboard controllers
-│   │   ├── Parent/        — Parent dashboard controllers (future)
 │   │   └── Auth/          — Authentication controllers
 │   ├── Middleware/         — Role-based & request middleware
 │   └── Requests/          — Form request validation classes
@@ -314,9 +313,7 @@ resources/
 │   ├── layouts/            — Base Blade layouts
 │   ├── components/         — Reusable Blade components (x-*)
 │   ├── admin/              — Admin panel views
-│   ├── teacher/            — Teacher dashboard views
-│   ├── student/            — Student dashboard views
-│   ├── parent/             — Parent dashboard views (future)
+│   ├── public/             — Public website views
 │   ├── auth/               — Login/register views
 │   └── emails/             — Email templates
 ├── css/
