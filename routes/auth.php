@@ -1,21 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\AuthController;
 
 // Authentication Routes
 Route::middleware('guest')->group(function () {
-    Route::get('/register', [RegisteredUserController::class, 'create'])
-                ->name('register');
-    Route::post('/register', [RegisteredUserController::class, 'store']);
+    // Register (placeholder - will be fully implemented)
+    Route::get('/register', function () {
+        return redirect()->route('login');
+    })->name('register');
+    Route::post('/register', function () {
+        return redirect()->route('login');
+    });
 
-    Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+    Route::get('/login', [AuthController::class, 'showLoginForm'])
                 ->name('login');
-    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('/login', [AuthController::class, 'login']);
 });
 
 Route::middleware('auth')->group(function () {
-    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    Route::post('/logout', [AuthController::class, 'logout'])
                 ->name('logout');
 });
