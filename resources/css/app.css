@@ -10,6 +10,10 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-[x-cloak] {
-    display: none !important;
+@utility scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
 }
+
+[x-cloak] { display: none !important; }

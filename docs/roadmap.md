@@ -1,154 +1,101 @@
-# Project Roadmap (Agile)
+# Project Roadmap (Agile) — EduBridge Cambodia
 
-**Kamrieng High School Management System** — 4 Sprints, 4 Weeks
-**Team Velocity Target**: 30–35 story points / sprint
-**Estimated Total**: 107 story points
+**EduBridge Cambodia** — Bilingual School CMS & Communications Platform
+**Total**: 28 issues, 122 tasks, 105 story points
 
 ---
 
 ## Sprint Overview
 
 ```
-Sprint 1 (21 pts)    Sprint 2 (26 pts)    Sprint 3 (31 pts)    Sprint 4 (29 pts)
+Sprint 1 (26 pts)    Sprint 2 (28 pts)    Sprint 3 (27 pts)    Sprint 4 (24 pts)
+9 issues             7 issues             5 issues             7 issues
 ──────────────────    ──────────────────    ──────────────────    ──────────────────
-Auth & Login          Student CRUD          Grade Entry           Admin Reports
-RBAC Middleware       Teacher CRUD          Grade Viewing         Teacher Reports
-Admin Dashboard       Class Schedule        Assignments Create   Student Report
-User Management       Attendance Tracking   Submit Assignments    Profile Edit
-                                            Announcements         Testing & Security
-                                            Notifications         Deployment
+US-01 Auth            US-09 View News       US-16 Faculty         US-21 Messages
+US-02 RBAC            US-10 Manage News     US-17 Leadership      US-22 Settings
+US-03 Home Page       US-11 View Gallery    US-18 Downloads       US-23 Audit Logs
+US-04 About Page      US-12 Manage Gallery  US-19 Notices         US-24 Statistics
+US-05 Contact Form    US-13 Events          US-20 Enrollment      US-25 i18n
+US-06 Site Search     US-14 Activities                           US-26 Donate
+US-07 Site Map        US-15 Achievements                         Testing & Deploy
+US-08 Hero Admin
+Chores Sprint 1
 ```
 
 ---
 
-## Burndown Chart (Target)
+## Sprint 1 — Auth, RBAC & Public Website Foundation
 
-```
-Points
-107 │
-100 │  ██
- 90 │  ██
- 80 │  ██  ██
- 70 │  ██  ██
- 60 │  ██  ██  ██
- 50 │  ██  ██  ██
- 40 │  ██  ██  ██  ██
- 30 │  ██  ██  ██  ██
- 20 │  ██  ██  ██  ██
- 10 │  ██  ██  ██  ██
-  0 └────────────────────
-     S1    S2    S3    S4
-     (21)  (26)  (31)  (29)
-```
-
----
-
-## Sprint 1 — Authentication, Role Permission, Dashboard, User Management
-
-**Sprint Goal**: Working auth with RBAC, admin dashboard, user CRUD.
+**Goal**: Working auth with RBAC, public-facing pages, Hero Slides CMS, layout foundation.
 
 | Day | Ceremony | BE-1 | BE-2 | FE-1 | FE-2 | QA |
 |-----|----------|------|------|------|------|----|
-| Mon | Sprint Planning (10:00, 1hr) | Auth controllers | Middleware files | Tailwind config + app layout | Login view + register | Set up Pest |
-| Tue | Daily Standup (9:00, 15min) | Password reset flow | Route groups in web.php | x-table, x-modal, x-card, x-input | Admin navbar + sidebar | Login + register tests |
-| Wed | Daily Standup (9:00, 15min) | Fix role redirect | Named routes all roles | x-button, x-badge, x-alert, x-pagination | Teacher/student navbar | Role redirect tests |
-| Thu | Backlog Grooming (14:00, 30min) | Bug fixes | Bug fixes | Admin/teacher/student layouts | Admin + teacher dashboard | Middleware tests |
-| Fri | Sprint Review (14:00, 1hr) + Retro (15:30, 45min) | Demo prep | Demo prep | — | Student dashboard | User CRUD tests + dashboard test |
+| Mon | Sprint Planning | Auth controllers + middleware | Route groups + HeroSlide model | Tailwind config + app layout | Home page + Hero slides | Set up Pest |
+| Tue | Daily Standup | Password reset + role redirect | Page CMS model + CRUD | x-components (card, table, modal, input) | About + Contact pages | Auth tests |
+| Wed | Daily Standup | Search controller + SiteMap | Form request validation | Site Map + Search views | Contact form submission | Page + Hero tests |
+| Thu | Backlog Grooming | Bug fixes | Bug fixes | Navbar + footer responsive | Bug fixes | Middleware + search tests |
+| Fri | Sprint Review + Retro | Demo prep | Demo prep | — | UI polish | Full Sprint 1 regression |
 
-**What to demo at Sprint Review**:
-1. Register a new user → login → redirected to correct dashboard
-2. Admin dashboard showing KPI stats
-3. Create/edit/delete a user in admin panel
-4. Teacher cannot access admin routes (403)
+**Issues**: #174–#182
 
 ---
 
-## Sprint 2 — Student, Teacher, Schedule, Attendance
+## Sprint 2 — Content Modules
 
-**Sprint Goal**: Student/Teacher CRUD, class scheduling, attendance tracking.
+**Goal**: Full CRUD for content modules with public views.
 
 | Day | Ceremony | BE-1 | BE-2 | FE-1 | FE-2 | QA |
 |-----|----------|------|------|------|------|----|
-| Mon | Sprint Planning (10:00, 1hr) | SubjectController + EnrollmentController | Verify model relationships | Students index + create | Classes index + create | Student CRUD tests |
-| Tue | Daily Standup (9:00, 15min) | Fix ScheduleController | StoreStudentRequest + StoreTeacherRequest | Students edit + show | Classes edit + show | Teacher CRUD tests |
-| Wed | Daily Standup (9:00, 15min) | Teacher schedule routes | StoreClassRequest + StoreAttendanceRequest | Teachers index + create + edit + show | Schedule (student weekly) | Class CRUD tests |
-| Thu | Backlog Grooming (14:00, 30min) | Bug fixes | Bug fixes | — | Attendance (teacher) record form | Attendance tests |
-| Fri | Sprint Review (14:00) + Retro (15:30) | Demo prep | Demo prep | — | Fix UI issues | Schedule tests + cross-browser |
+| Mon | Sprint Planning | NewsController + GalleryController | EventController + validation | News index + create (admin) | News public page + detail | News CRUD tests |
+| Tue | Daily Standup | ActivityController + AchievementController | Image upload handling | Gallery admin (albums + photos) | Gallery public page + lightbox | Gallery tests |
+| Wed | Daily Standup | Bilingual content support | Bug fixes | Events admin (CRUD) | Calendar + Activities pages | Events + Activity tests |
+| Thu | Backlog Grooming | Bug fixes | Bug fixes | Activities + Achievements admin | Achievements public page | Achievement tests |
+| Fri | Sprint Review + Retro | Demo prep | Demo prep | — | UI polish | Full Sprint 2 regression |
 
-**What to demo at Sprint Review**:
-1. Create a student, assign to class, view profile
-2. Create a teacher, assign subjects, view profile
-3. Student views weekly schedule
-4. Teacher marks attendance for a class → student sees it
+**Issues**: #183–#189
 
 ---
 
-## Sprint 3 — Grades, Assignments, Announcements, Notifications
+## Sprint 3 — School Modules
 
-**Sprint Goal**: Grade entry, assignment submission, announcements, notifications.
+**Goal**: School-specific modules with public pages and online enrollment.
 
 | Day | Ceremony | BE-1 | BE-2 | FE-1 | FE-2 | QA |
 |-----|----------|------|------|------|------|----|
-| Mon | Sprint Planning (10:00, 1hr) | Fix GradeController + AssignmentController | Notification service | Grades (teacher) entry view | Announcements index + create | Grade entry tests |
-| Tue | Daily Standup (9:00, 15min) | NotificationController | Audit logging | Grades (student) view | Announcements edit + show | Grade viewing tests |
-| Wed | Daily Standup (9:00, 15min) | Bug fixes | StoreGradeRequest + StoreAssignmentRequest | Assignments (student) list + detail | Notifications dropdown | Submission tests |
-| Thu | Backlog Grooming (14:00, 30min) | Bug fixes | Bug fixes | — | Notifications list page | Announcement tests |
-| Fri | Sprint Review (14:00) + Retro (15:30) | Demo prep | Demo prep | — | UI fixes | Notification + validation tests |
+| Mon | Sprint Planning | FacultyController + LeadershipController | NoticeController + validation | Faculty admin (CRUD) | Faculty public directory | Faculty CRUD tests |
+| Tue | Daily Standup | DownloadController + file upload | Enrollment form + validation | Leadership admin (CRUD) | Leadership public page | Leadership tests |
+| Wed | Daily Standup | Enrollment management | File type/size validation | Downloads admin (CRUD) | Downloads public page | Download + Notice tests |
+| Thu | Backlog Grooming | Bug fixes | Bug fixes | Notices admin (CRUD) | Enrollment form + Notices page | Enrollment tests |
+| Fri | Sprint Review + Retro | Demo prep | Demo prep | — | UI polish | Full Sprint 3 regression |
 
-**What to demo at Sprint Review**:
-1. Teacher enters grades → student sees them
-2. Teacher creates assignment → student submits with file
-3. Admin publishes announcement → target audience notified
-4. Notification bell shows unread count → mark as read
+**Issues**: #190–#194
 
 ---
 
-## Sprint 4 — Reports, Profile, Testing, Deployment
+## Sprint 4 — Admin Features, i18n, Testing, Deployment
 
-**Sprint Goal**: Reports dashboards, user profiles, full test coverage, production live.
+**Goal**: Admin tools, bilingual i18n, Donate, full test coverage, production deployment.
 
 | Day | Ceremony | BE-1 | BE-2 | FE-1 | FE-2 | QA |
 |-----|----------|------|------|------|------|----|
-| Mon | Sprint Planning (10:00, 1hr) | Admin ReportController (student + class) | Security audit | Reports index + student report | Profile (student) view + edit | Report tests |
-| Tue | Daily Standup (9:00, 15min) | Attendance + grade distribution reports | Production config + deploy script | Class + attendance report views | Profile (teacher) view + edit | Teacher report tests |
-| Wed | Daily Standup (9:00, 15min) | Teacher + Student ReportController | Queue + backup setup | Teacher reports | Alpine.js charts for reports | Full regression |
-| Thu | UAT Session (10:00, 2hr) | Bug fixes | Final deployment | Student reports | UI polish + loading states | Performance + security tests |
-| Fri | Sprint Review (14:00) + Retro (15:30) + Launch (17:00) | — | Production deployment | — | Performance optimization | UAT + sign-off + QA report |
+| Mon | Sprint Planning | MessageController + SettingsController | Audit logging service | Messages admin (inbox) | Settings page | Message + Settings tests |
+| Tue | Daily Standup | Statistics + Enrollment Stats endpoints | Bilingual i18n setup (km/en) | Statistics dashboard + charts | Donate page | Stats tests |
+| Wed | Daily Standup | Security audit (XSS, CSRF, SQLi) | Production config + deploy script | Audit Logs admin view | i18n language switcher | Security + i18n tests |
+| Thu | UAT Session | Bug fixes + deployment | Bug fixes | UI polish + loading states | Performance optimization | Full regression + Lighthouse |
+| Fri | Sprint Review + Retro + Launch | — | Production deployment | — | Performance + final polish | UAT sign-off + QA report |
 
-**What to demo at Sprint Review**:
-1. Admin generates student/class/attendance reports with charts
-2. Teacher views class performance report
-3. Student views own report card
-4. Profile editing works
-5. QA sign-off report + test results
-
-**Launch**: Production deployment Friday 17:00.
+**Issues**: #195–#201
 
 ---
 
 ## Velocity Tracking
 
-| Sprint | Planned | Actual | Running Avg |
-|--------|---------|--------|-------------|
-| 1 | 21 | — | — |
-| 2 | 26 | — | — |
-| 3 | 31 | — | — |
-| 4 | 29 | — | — |
-
-*Update actual points completed after each Sprint Review.*
-
----
-
-## Key Ceremonies Schedule
-
-| Ceremony | When | Duration | Attendees | Purpose |
-|----------|------|----------|-----------|---------|
-| Sprint Planning | Mon 10:00 | 1hr | Full team | Commit to sprint backlog, assign tasks |
-| Daily Standup | Mon–Thu 9:00 | 15min | Full team | Sync, identify blockers |
-| Backlog Grooming | Thu 14:00 | 30min | SM + leads | Refine product backlog for next sprint |
-| Sprint Review | Fri 14:00 | 1hr | Full team + stakeholders | Demo completed work, gather feedback |
-| Sprint Retrospective | Fri 15:30 | 45min | Full team | Inspect and adapt process |
-| UAT | Sprint 4 Thu 10:00 | 2hr | SM + QA + School staff | Stakeholder validation |
+| Sprint | Issues | Planned Pts | Actual | Running Avg |
+|--------|--------|-------------|--------|-------------|
+| 1 — Auth & Public Foundation | 9 | 26 | — | — |
+| 2 — Content Modules | 7 | 28 | — | — |
+| 3 — School Modules | 5 | 27 | — | — |
+| 4 — Admin, i18n, Deploy | 7 | 24 | — | — |
 
 ---
 
@@ -156,9 +103,8 @@ Points
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|-----------|--------|-----------|
-| Auth controllers (AuthenticatedSessionController) don't exist | High | High | Sprint 1 Day 1 priority |
-| All Blade views need building from scratch | High | High | 2 FE devs parallel; shared component library |
-| GradeController uses wrong model (updateOrCreate on User) | High | Medium | Refactor in Sprint 3 Day 1 |
-| No middleware exists | High | High | Build Sprint 1 Day 1 |
-| Velocity overestimated for first sprint | Medium | Medium | Start with 21 pts; adjust in Sprint Planning |
+| Khmer text rendering issues | Medium | High | Test Khmer Unicode early; use proper fonts |
+| File upload security | Medium | High | Validate file type + size + magic bytes server-side |
+| Enrollment form spam | Medium | Medium | Add CAPTCHA + rate limiting |
+| Hero slide image optimization | Low | Medium | Auto-resize/compress on upload |
 | Stakeholder unavailable for UAT | Medium | High | Schedule early; have backup contact |
