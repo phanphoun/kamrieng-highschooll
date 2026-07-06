@@ -171,4 +171,27 @@ class User extends Authenticatable
     {
         return $this->role === 'parent';
     }
+
+    /**
+     * Check if user is a content editor.
+     */
+    public function isContentEditor()
+    {
+        return $this->role === 'content_editor';
+    }
+
+    /**
+     * Route name of the dashboard for this user's role.
+     */
+    public function dashboardRouteName(): string
+    {
+        return match ($this->role) {
+            'admin' => 'admin.dashboard',
+            'teacher' => 'teacher.dashboard',
+            'student' => 'student.dashboard',
+            'parent' => 'parent.dashboard',
+            'content_editor' => 'editor.dashboard',
+            default => 'dashboard',
+        };
+    }
 }
