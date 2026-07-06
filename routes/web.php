@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController; // ✅ ADD THIS
+use App\Http\Controllers\ContactController; 
 
-// Include authentication routes
 require __DIR__.'/auth.php';
 
 Route::get('/', function () {
