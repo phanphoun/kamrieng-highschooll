@@ -5,6 +5,12 @@
 @section('content')
 <div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
     <div class="w-full max-w-md bg-white rounded-xl shadow-md p-8 text-center">
+        @if (session('status'))
+            <div class="mb-4 rounded-lg bg-green-50 border border-green-200 text-green-700 px-4 py-3 text-sm text-left">
+                {{ session('status') }}
+            </div>
+        @endif
+
         <h1 class="text-2xl font-bold text-gray-800 mb-2">Welcome, {{ auth()->user()->name }}</h1>
         <p class="text-gray-500 mb-1">You are logged in as
             <span class="font-semibold text-blue-600">{{ str_replace('_', ' ', auth()->user()->role) }}</span>.
