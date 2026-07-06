@@ -9,3 +9,39 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* ============================================
+   Language Switcher Styles
+   ============================================ */
+
+/* Default: show Khmer text, hide English text */
+html[data-lang="km"] .lang-en,
+html[data-lang="km"] .lang-toggle-en-text {
+    display: none !important;
+}
+
+/* When English is selected: show English text, hide Khmer text */
+html[data-lang="en"] .lang-km,
+html[data-lang="en"] .lang-toggle-km-text {
+    display: none !important;
+}
+
+/* Language toggle button styling */
+#lang-toggle .lang-toggle-km.active,
+#lang-toggle .lang-toggle-en.active {
+    background-color: rgb(59 130 246); /* blue-500 */
+    color: white;
+}
+
+#lang-toggle .lang-toggle-km,
+#lang-toggle .lang-toggle-en {
+    color: rgb(148 163 184); /* slate-400 */
+}
+
+#lang-toggle .lang-toggle-km .lang-toggle-km-text {
+    display: inline;
+}
+
+#lang-toggle .lang-toggle-en .lang-toggle-en-text {
+    display: inline;
+}
