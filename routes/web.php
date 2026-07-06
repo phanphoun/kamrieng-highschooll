@@ -3,13 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 
-// Include authentication routes
 require __DIR__.'/auth.php';
 
 use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('contact');
 });
 
 // Placeholder dashboards so the post-login role redirect (T-03) works.
