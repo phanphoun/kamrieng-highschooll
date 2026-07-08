@@ -16,8 +16,9 @@ class SyncApplicationStatuses extends Command
     {
         $defaultStatus = ApplicationStatus::where('is_default', true)->first();
 
-        if (!$defaultStatus) {
+        if (! $defaultStatus) {
             $this->error('No default application status found. Please seed statuses first.');
+
             return;
         }
 

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreEnrollmentStatusRequest;
 use App\Models\ApplicationStatus;
 use App\Models\EnrollmentApplication;
-use App\Http\Requests\Admin\StoreEnrollmentStatusRequest;
 
 class EnrollmentController extends Controller
 {
@@ -23,6 +23,7 @@ class EnrollmentController extends Controller
     public function show(EnrollmentApplication $enrollment)
     {
         $statuses = ApplicationStatus::orderBy('sort_order')->get();
+
         return view('admin.enrollments.show', compact('enrollment', 'statuses'));
     }
 

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
 
-class ProcessImageUpload implements ShouldQueue, ShouldBeUnique
+class ProcessImageUpload implements ShouldBeUnique, ShouldQueue
 {
     use Queueable;
 

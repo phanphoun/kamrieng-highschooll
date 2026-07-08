@@ -16,7 +16,7 @@ class UpdatePageRequest extends FormRequest
         return [
             'title_en' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
-            'slug' => 'required|string|max:255|unique:pages,slug,' . $this->route('page')->id,
+            'slug' => 'required|string|max:255|unique:pages,slug,'.$this->route('page')->id,
             'content_en' => 'nullable|string',
             'content_kh' => 'nullable|string',
             'is_published' => 'boolean',

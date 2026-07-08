@@ -11,6 +11,7 @@ class StatisticsController extends Controller
     public function index()
     {
         $stats = Statistic::orderBy('sort_order')->get();
+
         return view('admin.statistics.index', compact('stats'));
     }
 

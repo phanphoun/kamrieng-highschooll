@@ -76,6 +76,7 @@ Route::get('/language/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'kh'])) {
         session(['locale' => $locale]);
     }
+
     return back();
 })->name('language.switch');
 

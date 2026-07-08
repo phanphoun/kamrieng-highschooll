@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Statistic;
 use App\Http\Requests\Admin\StoreStatisticRequest;
 use App\Http\Requests\Admin\UpdateStatisticRequest;
+use App\Models\Statistic;
 
 class StatisticController extends Controller
 {
     public function index()
     {
         $statistics = Statistic::orderBy('sort_order')->paginate(20);
+
         return view('admin.statistics.index', compact('statistics'));
     }
 
@@ -46,6 +47,7 @@ class StatisticController extends Controller
     public function destroy(Statistic $statistic)
     {
         $statistic->delete();
+
         return redirect()->route('admin.statistics.index')->with('success', 'Statistic deleted successfully.');
     }
 }

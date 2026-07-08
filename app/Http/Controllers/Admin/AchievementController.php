@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Achievement;
 use App\Http\Requests\StoreAchievementRequest;
 use App\Http\Requests\UpdateAchievementRequest;
+use App\Models\Achievement;
 
 class AchievementController extends Controller
 {
     public function index()
     {
         $achievements = Achievement::latest()->paginate(20);
+
         return view('admin.achievements.index', compact('achievements'));
     }
 
@@ -54,6 +55,7 @@ class AchievementController extends Controller
     public function destroy(Achievement $achievement)
     {
         $achievement->delete();
+
         return redirect()->route('admin.achievements.index')->with('success', 'Achievement deleted successfully.');
     }
 }

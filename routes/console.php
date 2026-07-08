@@ -1,11 +1,12 @@
 <?php
 
 use App\Console\Commands\SyncApplicationStatuses;
+use App\Jobs\GenerateSitemap;
 use Illuminate\Support\Facades\Schedule;
 
 // Generate sitemap daily
 Schedule::call(function () {
-    \App\Jobs\GenerateSitemap::dispatch();
+    GenerateSitemap::dispatch();
 })->daily();
 
 // Sync enrollment application statuses hourly

@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\EnrollmentApplication;
-
 test('enrollment apply page returns successful response', function () {
     $response = $this->get(route('enrollment.apply'));
     $response->assertStatus(200);

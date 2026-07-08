@@ -86,7 +86,7 @@ app/
 │   │   ├── AuditLogMiddleware.php         # Auto-log CRUD actions
 │   │   └── SetLocale.php                  # Set locale from session
 │   │
-│   └── Requests/                          # Form request validation (29 files)
+│   └── Requests/                          # orm request validation (29 fiFles)
 │       ├── StoreNewsRequest.php           # One per entity + action
 │       ├── UpdateNewsRequest.php
 │       ├── StoreActivityRequest.php

@@ -12,9 +12,9 @@ class EnrollmentStatsController extends Controller
     {
         $stats = [
             'total' => EnrollmentApplication::count(),
-            'pending' => EnrollmentApplication::whereHas('status', fn($q) => $q->where('is_default', true))->count(),
-            'approved' => EnrollmentApplication::whereHas('status', fn($q) => $q->where('name_en', 'Approved'))->count(),
-            'rejected' => EnrollmentApplication::whereHas('status', fn($q) => $q->where('name_en', 'Rejected'))->count(),
+            'pending' => EnrollmentApplication::whereHas('status', fn ($q) => $q->where('is_default', true))->count(),
+            'approved' => EnrollmentApplication::whereHas('status', fn ($q) => $q->where('name_en', 'Approved'))->count(),
+            'rejected' => EnrollmentApplication::whereHas('status', fn ($q) => $q->where('name_en', 'Rejected'))->count(),
         ];
 
         $monthlyData = EnrollmentApplication::selectRaw('MONTH(created_at) as month, COUNT(*) as total')

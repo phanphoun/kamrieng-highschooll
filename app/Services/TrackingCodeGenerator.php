@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\EnrollmentApplication;
 use Illuminate\Support\Str;
 
 class TrackingCodeGenerator
@@ -12,8 +13,8 @@ class TrackingCodeGenerator
     public function generate(): string
     {
         do {
-            $code = 'EDU-' . strtoupper(Str::random(6));
-        } while (\App\Models\EnrollmentApplication::where('tracking_code', $code)->exists());
+            $code = 'EDU-'.strtoupper(Str::random(6));
+        } while (EnrollmentApplication::where('tracking_code', $code)->exists());
 
         return $code;
     }

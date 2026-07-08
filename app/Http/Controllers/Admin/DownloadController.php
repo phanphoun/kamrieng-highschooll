@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Download;
 use App\Http\Requests\StoreDownloadRequest;
 use App\Http\Requests\UpdateDownloadRequest;
+use App\Models\Download;
 
 class DownloadController extends Controller
 {
     public function index()
     {
         $downloads = Download::latest()->paginate(20);
+
         return view('admin.downloads.index', compact('downloads'));
     }
 
@@ -58,6 +59,7 @@ class DownloadController extends Controller
     public function destroy(Download $download)
     {
         $download->delete();
+
         return redirect()->route('admin.downloads.index')->with('success', 'Download deleted successfully.');
     }
 }

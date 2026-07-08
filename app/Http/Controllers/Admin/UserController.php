@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Http\Requests\Admin\StoreUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -15,12 +15,14 @@ class UserController extends Controller
     {
         $users = User::with('roles')->latest()->paginate(20);
         $roles = Role::all();
+
         return view('admin.users.index', compact('users', 'roles'));
     }
 
     public function create()
     {
         $roles = Role::all();
+
         return view('admin.users.create', compact('roles'));
     }
 
@@ -44,6 +46,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
+
         return view('admin.users.edit', compact('user', 'roles'));
     }
 
@@ -70,6 +73,7 @@ class UserController extends Controller
         }
 
         $user->delete();
+
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
     }
 }

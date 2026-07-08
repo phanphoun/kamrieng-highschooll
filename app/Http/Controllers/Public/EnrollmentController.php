@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
-use App\Models\EnrollmentApplication;
+use App\Http\Requests\StoreEnrollmentRequest;
 use App\Models\ApplicationStatus;
+use App\Models\EnrollmentApplication;
 use App\Models\User;
 use App\Notifications\EnrollmentSubmitted;
-use App\Http\Requests\StoreEnrollmentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -32,7 +32,7 @@ class EnrollmentController extends Controller
         $validated = $request->validated();
 
         // Generate tracking code
-        $validated['tracking_code'] = 'EDU-' . strtoupper(Str::random(6));
+        $validated['tracking_code'] = 'EDU-'.strtoupper(Str::random(6));
         $validated['status_id'] = ApplicationStatus::where('is_default', true)->first()?->id;
 
         EnrollmentApplication::create($validated);

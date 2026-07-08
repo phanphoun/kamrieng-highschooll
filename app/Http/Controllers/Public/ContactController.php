@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreContactRequest;
 use App\Models\ContactMessage;
 use App\Models\User;
 use App\Notifications\ContactAutoReply;
 use App\Notifications\ContactMessageReceived;
-use App\Http\Requests\StoreContactRequest;
 use Illuminate\Support\Facades\Notification;
 
 class ContactController extends Controller

@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Leadership;
 use App\Http\Requests\StoreLeadershipRequest;
 use App\Http\Requests\UpdateLeadershipRequest;
+use App\Models\Leadership;
 
 class LeadershipController extends Controller
 {
     public function index()
     {
         $members = Leadership::orderBy('sort_order')->paginate(20);
+
         return view('admin.leadership.index', compact('members'));
     }
 
@@ -54,6 +55,7 @@ class LeadershipController extends Controller
     public function destroy(Leadership $leadership)
     {
         $leadership->delete();
+
         return redirect()->route('admin.leadership.index')->with('success', 'Leadership member deleted successfully.');
     }
 }

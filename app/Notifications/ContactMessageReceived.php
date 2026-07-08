@@ -31,7 +31,7 @@ class ContactMessageReceived extends Notification implements ShouldQueue
             ->greeting('New Contact Message')
             ->line("From: {$this->message->name}")
             ->line("Email: {$this->message->email}")
-            ->line("Message:")
+            ->line('Message:')
             ->line($this->message->message)
             ->action('View Message', route('admin.messages.show', $this->message));
     }

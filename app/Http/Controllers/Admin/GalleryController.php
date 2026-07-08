@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\GalleryAlbum;
-use App\Models\GalleryImage;
 use App\Http\Requests\StoreGalleryAlbumRequest;
 use App\Http\Requests\UpdateGalleryAlbumRequest;
+use App\Models\GalleryAlbum;
+use App\Models\GalleryImage;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
@@ -14,6 +14,7 @@ class GalleryController extends Controller
     public function index()
     {
         $albums = GalleryAlbum::withCount('images')->latest()->paginate(20);
+
         return view('admin.gallery.index', compact('albums'));
     }
 
@@ -38,6 +39,7 @@ class GalleryController extends Controller
     public function show(GalleryAlbum $gallery)
     {
         $album = $gallery->load('images');
+
         return view('admin.gallery.show', compact('album'));
     }
 
@@ -63,6 +65,7 @@ class GalleryController extends Controller
     {
         $gallery->images()->delete();
         $gallery->delete();
+
         return redirect()->route('admin.gallery.index')->with('success', 'Gallery album deleted successfully.');
     }
 
@@ -77,7 +80,7 @@ class GalleryController extends Controller
         ]);
 
         foreach ($request->file('images') as $image) {
-            $path = $image->store('gallery/' . $gallery->id, 'public');
+            $path = $image->store('gallery/'.$gallery->id, 'public');
             $gallery->images()->create(['image_path' => $path]);
         }
 
@@ -90,6 +93,7 @@ class GalleryController extends Controller
     public function destroyImage(GalleryImage $image)
     {
         $image->delete();
+
         return back()->with('success', 'Image removed successfully.');
     }
 }

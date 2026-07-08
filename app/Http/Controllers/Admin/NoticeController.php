@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Notice;
 use App\Http\Requests\StoreNoticeRequest;
 use App\Http\Requests\UpdateNoticeRequest;
+use App\Models\Notice;
 
 class NoticeController extends Controller
 {
     public function index()
     {
         $notices = Notice::latest()->paginate(20);
+
         return view('admin.notices.index', compact('notices'));
     }
 
@@ -46,6 +47,7 @@ class NoticeController extends Controller
     public function destroy(Notice $notice)
     {
         $notice->delete();
+
         return redirect()->route('admin.notices.index')->with('success', 'Notice deleted successfully.');
     }
 }

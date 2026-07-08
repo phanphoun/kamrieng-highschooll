@@ -177,6 +177,7 @@ Publish with: `php artisan vendor:publish --tag=laravel-errors`
 - `tests/Unit/Services/FileUploadServiceTest.php`
 
 ### Browser Tests (Dusk)
+
 - `tests/Browser/AuthLoginTest.php`
 - `tests/Browser/NavigationTest.php`
 - `tests/Browser/EnrollmentFlowTest.php`

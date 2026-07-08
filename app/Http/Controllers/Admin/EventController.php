@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Event;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use App\Models\Event;
 
 class EventController extends Controller
 {
     public function index()
     {
         $events = Event::latest('event_date')->paginate(20);
+
         return view('admin.events.index', compact('events'));
     }
 
@@ -46,6 +47,7 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         $event->delete();
+
         return redirect()->route('admin.events.index')->with('success', 'Event deleted successfully.');
     }
 }

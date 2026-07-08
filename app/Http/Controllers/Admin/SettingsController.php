@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\SiteSettings;
 use App\Http\Requests\Admin\StoreSettingsRequest;
+use App\Models\SiteSettings;
 
 class SettingsController extends Controller
 {
     public function index()
     {
         $settings = SiteSettings::first();
+
         return view('admin.settings', compact('settings'));
     }
 

@@ -24,6 +24,7 @@ class ActivityController extends Controller
     public function show($slug)
     {
         $activity = Activity::where('slug', $slug)->firstOrFail();
+
         return view('public.pages.activities.show', compact('activity'));
     }
 }

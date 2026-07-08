@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\News;
-use App\Models\User;
 
 test('news index page returns a successful response', function () {
     $response = $this->get(route('news.index'));

@@ -15,7 +15,7 @@ return new class extends Migration
         $pivotPermission = $columnNames['permission_pivot_key'] ?? 'permission_id';
 
         if (empty($tableNames)) {
-            throw new \Exception('Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.');
+            throw new Exception('Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.');
         }
 
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
@@ -43,7 +43,7 @@ return new class extends Migration
             }
         });
 
-        Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames, $pivotPermission, $teams) {
+        Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames, $pivotPermission) {
             $table->unsignedBigInteger($pivotPermission);
 
             $table->string('model_type');
@@ -61,7 +61,7 @@ return new class extends Migration
             );
         });
 
-        Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames, $pivotRole, $teams) {
+        Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames, $pivotRole) {
             $table->unsignedBigInteger($pivotRole);
 
             $table->string('model_type');
@@ -105,7 +105,7 @@ return new class extends Migration
     {
         $tableNames = config('permission.table_names');
         if (empty($tableNames)) {
-            throw new \Exception('Error: config/permission.php not found. Please publish the package configuration before proceeding.');
+            throw new Exception('Error: config/permission.php not found. Please publish the package configuration before proceeding.');
         }
 
         Schema::dropIfExists($tableNames['role_has_permissions']);

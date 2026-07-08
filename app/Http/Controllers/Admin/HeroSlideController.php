@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\HeroSlide;
 use App\Http\Requests\StoreHeroSlideRequest;
 use App\Http\Requests\UpdateHeroSlideRequest;
+use App\Models\HeroSlide;
 
 class HeroSlideController extends Controller
 {
     public function index()
     {
         $slides = HeroSlide::orderBy('sort_order')->paginate(20);
+
         return view('admin.hero-slides.index', compact('slides'));
     }
 
@@ -52,6 +53,7 @@ class HeroSlideController extends Controller
     public function destroy(HeroSlide $heroSlide)
     {
         $heroSlide->delete();
+
         return redirect()->route('admin.hero-slides.index')->with('success', 'Hero slide deleted successfully.');
     }
 }

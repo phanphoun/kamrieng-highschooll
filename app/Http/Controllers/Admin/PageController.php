@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Page;
 use App\Http\Requests\StorePageRequest;
 use App\Http\Requests\UpdatePageRequest;
+use App\Models\Page;
 
 class PageController extends Controller
 {
     public function index()
     {
         $pages = Page::orderBy('sort_order')->paginate(20);
+
         return view('admin.pages.index', compact('pages'));
     }
 
@@ -46,6 +47,7 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         $page->delete();
+
         return redirect()->route('admin.pages.index')->with('success', 'Page deleted successfully.');
     }
 }

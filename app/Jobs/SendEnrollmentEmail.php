@@ -14,6 +14,7 @@ class SendEnrollmentEmail implements ShouldQueue
     use Queueable;
 
     public EnrollmentApplication $enrollment;
+
     public string $type;
 
     public function __construct(EnrollmentApplication $enrollment, string $type)
