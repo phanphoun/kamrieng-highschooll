@@ -56,8 +56,13 @@
             </div>
 
             <div class="mb-6">
-                <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Image</label>
-                <input type="file" name="image" id="image" class="w-full rounded-lg border-gray-300 focus:border-primary-500 focus:ring-primary-500">
+                <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Image <span class="text-red-500">*</span></label>
+                <input type="file" name="image" id="image" accept="image/*"
+                       class="w-full rounded-lg border-gray-300 focus:border-primary-500 focus:ring-primary-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                <p class="mt-1 text-xs text-gray-500">Recommended size: 1920x1080px. Max 5MB. JPG, PNG, or WEBP.</p>
+                <div id="image-preview" class="mt-2 hidden">
+                    <img id="preview-img" src="#" alt="Preview" class="w-full max-h-48 object-cover rounded-lg border border-gray-200">
+                </div>
                 @error('image') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
             </div>
 
@@ -105,3 +110,29 @@
         </form>
     </div>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('image');
+    const preview = document.getElementById('image-preview');
+    const img = document.getElementById('preview-img');
+    if (input) {
+        input.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (ev) {
+                    img.src = ev.target.result;
+                    preview.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.classList.add('hidden');
+                img.src = '#';
+            }
+        });
+    }
+});
+</script>
+@endpush
