@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Khmer culture celebration illustration</title>
+  <desc id="desc">A school cultural celebration with banners and traditional colors.</desc>
+  <rect width="1200" height="900" fill="#f8fafc"/>
+  <rect y="0" width="1200" height="210" fill="#192436"/>
+  <path d="M0 210c150 65 300 65 450 0s300-65 450 0 250 60 300 35v655H0z" fill="#fef3c7"/>
+  <path d="M130 150h940" stroke="#f7b316" stroke-width="16" stroke-linecap="round"/>
+  <g fill="#f7b316">
+    <circle cx="240" cy="150" r="52"/><circle cx="420" cy="150" r="52"/><circle cx="600" cy="150" r="52"/><circle cx="780" cy="150" r="52"/><circle cx="960" cy="150" r="52"/>
+  </g>
+  <rect x="300" y="390" width="600" height="330" rx="22" fill="#192436"/>
+  <path d="M380 620c120-170 320-170 440 0" fill="none" stroke="#f7b316" stroke-width="38" stroke-linecap="round"/>
+  <circle cx="600" cy="505" r="70" fill="#086fd3"/>
+  <path d="M505 700h190" stroke="#f7b316" stroke-width="36" stroke-linecap="round"/>
+</svg>

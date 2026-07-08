@@ -37,6 +37,26 @@ import Chart from 'chart.js/auto';
 // TinyMCE rich text editor
 // import tinymce from 'tinymce';
 
+// Scroll reveal animation
+document.addEventListener('DOMContentLoaded', function () {
+    const revealElements = document.querySelectorAll('.reveal, .reveal-scale');
+    if (!('IntersectionObserver' in window)) {
+        revealElements.forEach(el => el.classList.add('visible'));
+        return;
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+});
+
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize any custom JS here

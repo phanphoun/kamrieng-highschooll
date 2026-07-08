@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Classroom illustration</title>
+  <desc id="desc">Students desks and a teacher board in a bright classroom.</desc>
+  <rect width="1200" height="900" fill="#f8fafc"/>
+  <rect y="620" width="1200" height="280" fill="#e2e8f0"/>
+  <rect x="170" y="120" width="860" height="360" rx="18" fill="#192436"/>
+  <rect x="220" y="170" width="760" height="260" rx="10" fill="#0f172a"/>
+  <path d="M285 250h250M285 310h360M285 370h220" stroke="#f7b316" stroke-width="22" stroke-linecap="round"/>
+  <rect x="190" y="660" width="250" height="48" rx="8" fill="#086fd3"/>
+  <rect x="505" y="660" width="250" height="48" rx="8" fill="#086fd3"/>
+  <rect x="820" y="660" width="250" height="48" rx="8" fill="#086fd3"/>
+  <rect x="235" y="708" width="32" height="95" fill="#192436"/>
+  <rect x="362" y="708" width="32" height="95" fill="#192436"/>
+  <rect x="550" y="708" width="32" height="95" fill="#192436"/>
+  <rect x="677" y="708" width="32" height="95" fill="#192436"/>
+  <rect x="865" y="708" width="32" height="95" fill="#192436"/>
+  <rect x="992" y="708" width="32" height="95" fill="#192436"/>
+  <circle cx="312" cy="590" r="42" fill="#f7b316"/>
+  <circle cx="630" cy="590" r="42" fill="#f7b316"/>
+  <circle cx="948" cy="590" r="42" fill="#f7b316"/>
+</svg>

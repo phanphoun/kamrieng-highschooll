@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Sports day illustration</title>
+  <desc id="desc">A school sports field with running lanes and a finish line.</desc>
+  <rect width="1200" height="900" fill="#dbeafe"/>
+  <rect y="410" width="1200" height="490" fill="#16a34a"/>
+  <path d="M0 820c260-210 610-270 1200-210v290H0z" fill="#b91c1c"/>
+  <path d="M120 850c210-150 565-210 960-175" fill="none" stroke="#f8fafc" stroke-width="14"/>
+  <path d="M95 780c250-160 600-215 1015-170" fill="none" stroke="#f8fafc" stroke-width="14"/>
+  <path d="M680 455v250" stroke="#f8fafc" stroke-width="18" stroke-dasharray="24 24"/>
+  <circle cx="410" cy="475" r="70" fill="#f7b316"/>
+  <path d="M410 545l-60 145M410 545l75 140M375 620h90" stroke="#192436" stroke-width="28" stroke-linecap="round"/>
+  <circle cx="810" cy="520" r="62" fill="#086fd3"/>
+  <path d="M810 582l-75 130M810 582l90 120M765 642h92" stroke="#192436" stroke-width="26" stroke-linecap="round"/>
+</svg>
