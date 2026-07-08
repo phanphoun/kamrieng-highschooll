@@ -205,6 +205,59 @@
                 </div>
             </x-ui.card>
 
+            <x-ui.card>
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">Donation Information</h2>
+                <p class="text-sm text-gray-500 mb-4">Configure bank details and instructions shown on the public Donate page.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="donation_bank_name_en" class="block text-sm font-medium text-gray-700 mb-1">Bank Name (EN)</label>
+                        <input type="text" name="donation_bank_name_en" id="donation_bank_name_en" value="{{ old('donation_bank_name_en', $settings->donation_bank_name_en ?? '') }}"
+                               class="w-full rounded-lg border-gray-300 border px-3 py-2 text-sm focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="donation_bank_name_kh" class="block text-sm font-medium text-gray-700 mb-1">Bank Name (KH)</label>
+                        <input type="text" name="donation_bank_name_kh" id="donation_bank_name_kh" value="{{ old('donation_bank_name_kh', $settings->donation_bank_name_kh ?? '') }}"
+                               class="w-full rounded-lg border-gray-300 border px-3 py-2 text-sm focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="donation_account_name_en" class="block text-sm font-medium text-gray-700 mb-1">Account Name (EN)</label>
+                        <input type="text" name="donation_account_name_en" id="donation_account_name_en" value="{{ old('donation_account_name_en', $settings->donation_account_name_en ?? '') }}"
+                               class="w-full rounded-lg border-gray-300 border px-3 py-2 text-sm focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="donation_account_name_kh" class="block text-sm font-medium text-gray-700 mb-1">Account Name (KH)</label>
+                        <input type="text" name="donation_account_name_kh" id="donation_account_name_kh" value="{{ old('donation_account_name_kh', $settings->donation_account_name_kh ?? '') }}"
+                               class="w-full rounded-lg border-gray-300 border px-3 py-2 text-sm focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="donation_account_number" class="block text-sm font-medium text-gray-700 mb-1">Account Number</label>
+                        <input type="text" name="donation_account_number" id="donation_account_number" value="{{ old('donation_account_number', $settings->donation_account_number ?? '') }}"
+                               class="w-full rounded-lg border-gray-300 border px-3 py-2 text-sm focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                    <div>
+                        <label for="donation_qr_code" class="block text-sm font-medium text-gray-700 mb-1">QR Code Image</label>
+                        <input type="file" name="donation_qr_code" id="donation_qr_code" accept="image/*"
+                               class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                        @if(!empty($settings->donation_qr_code_path))
+                            <div class="mt-2">
+                                <img src="{{ asset('storage/' . $settings->donation_qr_code_path) }}" alt="QR Code" class="w-24 h-24 object-cover rounded border">
+                                <p class="text-xs text-gray-400 mt-1">Upload a new image to replace.</p>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="donation_instructions_en" class="block text-sm font-medium text-gray-700 mb-1">Donation Instructions (EN)</label>
+                        <textarea name="donation_instructions_en" id="donation_instructions_en" rows="3"
+                                  class="w-full rounded-lg border-gray-300 border px-3 py-2 text-sm focus:ring-primary-500 focus:border-primary-500">{{ old('donation_instructions_en', $settings->donation_instructions_en ?? '') }}</textarea>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="donation_instructions_kh" class="block text-sm font-medium text-gray-700 mb-1">Donation Instructions (KH)</label>
+                        <textarea name="donation_instructions_kh" id="donation_instructions_kh" rows="3"
+                                  class="w-full rounded-lg border-gray-300 border px-3 py-2 text-sm focus:ring-primary-500 focus:border-primary-500">{{ old('donation_instructions_kh', $settings->donation_instructions_kh ?? '') }}</textarea>
+                    </div>
+                </div>
+            </x-ui.card>
+
             <div class="flex justify-end gap-3">
                 <x-ui.button type="submit">
                     <i class="fas fa-save mr-2"></i>

@@ -167,6 +167,8 @@ return [
     'account_number' => 'Account Number: 1234-5678-9012',
     'donate_note' => 'Please include your name and contact information with your donation.',
     'contact_us_for_details' => 'Contact Us for More Details',
+    'instructions' => 'Instructions',
+    'donate_details_unavailable' => 'Donation details will be available soon.',
 
     /*
     |--------------------------------------------------------------------------

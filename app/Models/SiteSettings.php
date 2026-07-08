@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class SiteSettings extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'school_name_en',
         'school_name_kh',
@@ -37,6 +40,14 @@ class SiteSettings extends Model
         'opening_hours',
         'office_hours',
         'is_maintenance_mode',
+        'donation_bank_name_en',
+        'donation_bank_name_kh',
+        'donation_account_name_en',
+        'donation_account_name_kh',
+        'donation_account_number',
+        'donation_qr_code_path',
+        'donation_instructions_en',
+        'donation_instructions_kh',
     ];
 
     protected function casts(): array

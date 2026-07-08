@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Models\SiteSettings;
 
 class DonateController extends Controller
 {
@@ -11,6 +12,8 @@ class DonateController extends Controller
      */
     public function index()
     {
-        return view('public.pages.donate');
+        $settings = SiteSettings::first();
+
+        return view('public.pages.donate', compact('settings'));
     }
 }

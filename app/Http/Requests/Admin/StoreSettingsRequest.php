@@ -32,6 +32,14 @@ class StoreSettingsRequest extends FormRequest
             'telegram_url' => 'nullable|url|max:255',
             'map_embed_url' => 'nullable|string',
             'is_maintenance_mode' => 'boolean',
+            'donation_bank_name_en' => 'nullable|string|max:255',
+            'donation_bank_name_kh' => 'nullable|string|max:255',
+            'donation_account_name_en' => 'nullable|string|max:255',
+            'donation_account_name_kh' => 'nullable|string|max:255',
+            'donation_account_number' => 'nullable|string|max:50',
+            'donation_qr_code' => 'nullable|image|max:2048',
+            'donation_instructions_en' => 'nullable|string',
+            'donation_instructions_kh' => 'nullable|string',
         ];
     }
 }
