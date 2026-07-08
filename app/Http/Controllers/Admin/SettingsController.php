@@ -25,6 +25,9 @@ class SettingsController extends Controller
         if ($request->hasFile('favicon')) {
             $validated['favicon_path'] = $request->file('favicon')->store('settings', 'public');
         }
+        if ($request->hasFile('donation_qr_code')) {
+            $validated['donation_qr_code_path'] = $request->file('donation_qr_code')->store('settings', 'public');
+        }
 
         $settings = SiteSettings::first();
         if ($settings) {
