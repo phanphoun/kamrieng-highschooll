@@ -6,30 +6,7 @@ window.Alpine = Alpine;
 // Initialize Alpine
 Alpine.start();
 
-// Hero carousel autoplay plugin
-document.addEventListener('alpine:init', () => {
-    Alpine.magic('nextTick', () => Alpine.nextTick);
 
-    Alpine.data('heroCarousel', () => ({
-        init() {
-            this.startAutoplay();
-        },
-        startAutoplay() {
-            this.$watch('current', () => this.reset());
-            this.reset();
-        },
-        reset() {
-            clearTimeout(this._timer);
-            this._timer = setTimeout(() => this.next(), 5000);
-        },
-        next() {
-            this.current = (this.current + 1) % this.slides.length;
-        },
-        prev() {
-            this.current = (this.current - 1 + this.slides.length) % this.slides.length;
-        },
-    }));
-});
 
 // Chart.js (if needed on dashboard)
 import Chart from 'chart.js/auto';

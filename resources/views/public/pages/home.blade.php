@@ -3,58 +3,211 @@
 @section('title', 'Home')
 
 @section('content')
-    <!-- Hero Banner with carousel -->
-    <section x-data='{ current: 0, slides: @json($heroSlides ?? collect()), locale: "{{ app()->getLocale() }}", next() { this.current = (this.current + 1) % this.slides.length; }, prev() { this.current = (this.current - 1 + this.slides.length) % this.slides.length; } }' class="relative bg-slate-900 text-white overflow-hidden">
+    <!-- Hero Banner with Enhanced Carousel -->
+    <section x-data="{
+        current: 0,
+        slides: {{ json_encode($heroSlides ?? collect()) }},
+        locale: '{{ app()->getLocale() }}',
+        autoplayInterval: null,
+        isPaused: false,
+        progress: 0,
+        autoplayDuration: 5000,
+
+        init() {
+            if (this.slides.length > 1) {
+                this.startAutoplay();
+            }
+        },
+
+        startAutoplay() {
+            this.clearAutoplay();
+            this.progress = 0;
+            const step = 100 / (this.autoplayDuration / 50);
+            this.autoplayInterval = setInterval(() => {
+                if (!this.isPaused) {
+                    this.progress += step;
+                    if (this.progress >= 100) {
+                        this.progress = 0;
+                        this.next();
+                    }
+                }
+            }, 50);
+        },
+
+        clearAutoplay() {
+            if (this.autoplayInterval) {
+                clearInterval(this.autoplayInterval);
+                this.autoplayInterval = null;
+            }
+        },
+
+        next() {
+            this.current = (this.current + 1) % this.slides.length;
+            this.progress = 0;
+        },
+
+        prev() {
+            this.current = (this.current - 1 + this.slides.length) % this.slides.length;
+            this.progress = 0;
+        },
+
+        goTo(idx) {
+            this.current = idx;
+            this.progress = 0;
+        },
+
+        pause() {
+            this.isPaused = true;
+        },
+
+        resume() {
+            this.isPaused = false;
+        },
+
+        destroy() {
+            this.clearAutoplay();
+        }
+    }"
+    @mouseenter="pause()" @mouseleave="resume()"
+    class="relative bg-slate-900 text-white overflow-hidden min-h-[70vh] md:min-h-screen">
+
+        <!-- Background Slides with Ken Burns Effect -->
         <template x-if="slides.length">
             <div class="absolute inset-0">
                 <template x-for="(slide, idx) in slides" :key="slide.id">
-                    <img x-show="idx === current" x-transition.opacity.duration.700ms :src="slide.image_path ? '{{ asset('storage') }}/' + slide.image_path : 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1600&q=80'" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1600&q=80'" alt="Hero" class="w-full h-full object-cover opacity-80">
+                    <div x-show="idx === current" class="absolute inset-0">
+                        <div class="absolute inset-0 animate-ken-burns">
+                            <img
+                                :src="slide.image_path ? '{{ asset('storage') }}/' + slide.image_path : 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1600&q=80'"
+                                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1600&q=80'"
+                                alt="Hero"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/70 to-slate-900/30"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+                    </div>
                 </template>
-                <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-slate-900/40"></div>
             </div>
         </template>
 
-        <div x-show="slides.length" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 md:pt-36 md:pb-32">
+        <!-- Empty state when no slides -->
+        <div x-show="!slides.length" class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1600&q=80" alt="School" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/70 to-slate-900/30"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-32 md:pt-48 md:pb-40">
             <div class="max-w-2xl">
                 <template x-if="slides.length">
                     <div>
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="block h-px w-10 bg-yellow-400"></span>
-                            <span class="text-sm font-semibold uppercase tracking-wider text-yellow-200" x-text="locale === 'kh' && slides[current].title_kh ? slides[current].title_kh : slides[current].title_en"></span>
+                        <!-- Slide indicator badge -->
+                        <div x-show="slides.length > 1" class="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium text-yellow-300 mb-8 border border-white/10">
+                            <span class="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse"></span>
+                            <span x-text="'Slide ' + (current + 1) + ' of ' + slides.length"></span>
                         </div>
-                        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-                            <span class="block text-yellow-400" x-text="locale === 'kh' && slides[current].subtitle_kh ? slides[current].subtitle_kh : slides[current].subtitle_en"></span>
-                        </h1>
-                        <div class="flex items-center gap-3 mb-8">
-                            <span class="block h-px w-10 bg-yellow-400"></span>
-                            <p class="text-lg md:text-xl text-primary-100" x-text="locale === 'kh' && slides[current].description_kh ? slides[current].description_kh : slides[current].description_en"></p>
-                        </div>
-                        <div class="flex flex-wrap items-center gap-4">
-                            <a :href="slides[current].btn_link || '#'" class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-400 text-slate-900 font-semibold rounded hover:bg-yellow-300 transition">
-                                <span x-text="locale === 'kh' && slides[current].btn_text_kh ? slides[current].btn_text_kh : (slides[current].btn_text_en || 'Learn More')"></span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            </a>
+
+                        <!-- Animated Content Wrapper (recreates on slide change to replay transitions) -->
+                        <div :key="current">
+                            <!-- Title with entrance animation -->
+                            <div class="mb-4"
+                                 x-transition:enter="transition ease-out duration-500"
+                                 x-transition:enter-start="opacity-0 translate-y-8"
+                                 x-transition:enter-end="opacity-100 translate-y-0">
+                                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+                                    <span class="text-white" x-text="locale === 'kh' && slides[current].title_kh ? slides[current].title_kh : slides[current].title_en"></span>
+                                </h1>
+                            </div>
+
+                            <!-- Subtitle with accent -->
+                            <div class="flex items-center gap-4 mb-6"
+                                 x-transition:enter="transition ease-out duration-500 delay-150"
+                                 x-transition:enter-start="opacity-0 translate-y-6"
+                                 x-transition:enter-end="opacity-100 translate-y-0">
+                                <span class="block h-0.5 w-12 bg-yellow-400"></span>
+                                <h2 class="text-xl md:text-3xl font-bold text-yellow-400"
+                                    x-text="locale === 'kh' && slides[current].subtitle_kh ? slides[current].subtitle_kh : slides[current].subtitle_en"></h2>
+                            </div>
+
+                            <!-- Description -->
+                            <p class="text-base md:text-lg text-slate-200 mb-10 max-w-xl leading-relaxed"
+                               x-transition:enter="transition ease-out duration-500 delay-300"
+                               x-transition:enter-start="opacity-0 translate-y-6"
+                               x-transition:enter-end="opacity-100 translate-y-0"
+                               x-text="locale === 'kh' && slides[current].description_kh ? slides[current].description_kh : slides[current].description_en"></p>
+
+                            <!-- CTA Button with hover effect -->
+                            <div x-transition:enter="transition ease-out duration-500 delay-450"
+                                 x-transition:enter-start="opacity-0 translate-y-6"
+                                 x-transition:enter-end="opacity-100 translate-y-0">
+                                <a :href="slides[current].btn_link || '#'"
+                                   class="group inline-flex items-center gap-3 px-8 py-4 bg-yellow-400 text-slate-900 font-bold rounded-full hover:bg-yellow-300 transition-all duration-300 shadow-lg shadow-yellow-400/25 hover:shadow-yellow-400/40 hover:-translate-y-0.5">
+                                    <span x-text="locale === 'kh' && slides[current].btn_text_kh ? slides[current].btn_text_kh : (slides[current].btn_text_en || 'Learn More')"></span>
+                                    <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </template>
+
+                <!-- Empty state content -->
+                <div x-show="!slides.length">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium text-yellow-300 mb-8 border border-white/10">
+                        <span class="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse"></span>
+                        <span>Welcome</span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-white mb-4">Welcome to Our School</h1>
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="block h-0.5 w-12 bg-yellow-400"></span>
+                        <h2 class="text-xl md:text-3xl font-bold text-yellow-400">Nurturing Minds, Building Futures</h2>
+                    </div>
+                    <p class="text-base md:text-lg text-slate-200 mb-10 max-w-xl leading-relaxed">Providing quality education to Cambodian students since 2005.</p>
+                </div>
             </div>
         </div>
 
-        <!-- Carousel controls -->
-        <div class="absolute bottom-6 inset-x-0 z-20" x-show="slides.length">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <button @click="prev()" class="w-10 h-10 rounded-full bg-slate-900/80 border border-white/10 hover:bg-slate-900 flex items-center justify-center">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                    </button>
-                    <div class="flex items-center gap-2">
-                        <template x-for="(slide, idx) in slides" :key="'dot-'+idx">
-                            <span class="h-2 w-2 rounded-full" :class="idx === current ? 'bg-yellow-400' : 'bg-slate-400'"></span>
-                        </template>
+        <!-- Bottom Controls Bar -->
+        <div class="absolute bottom-0 inset-x-0 z-20" x-show="slides.length">
+            <!-- Autoplay Progress Bar -->
+            <div x-show="slides.length > 1" class="h-0.5 bg-white/10">
+                <div class="h-full bg-yellow-400 transition-all duration-[50ms] linear" :style="'width: ' + progress + '%'"></div>
+            </div>
+
+            <div class="bg-gradient-to-t from-slate-900/80 to-transparent pt-12 pb-6">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+                    <!-- Navigation buttons -->
+                    <div class="flex items-center gap-4">
+                        <button @click="prev()" class="w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 flex items-center justify-center group">
+                            <svg class="w-5 h-5 text-white transition-transform duration-300 group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+
+                        <!-- Dot indicators with number -->
+                        <div class="flex items-center gap-2.5">
+                            <template x-for="(slide, idx) in slides" :key="'dot-'+idx">
+                                <button @click="goTo(idx)"
+                                        class="rounded-full transition-all duration-500"
+                                        :class="idx === current ? 'w-8 h-2.5 bg-yellow-400' : 'w-2.5 h-2.5 bg-white/30 hover:bg-white/50'">
+                                </button>
+                            </template>
+                        </div>
+
+                        <button @click="next()" class="w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 flex items-center justify-center group">
+                            <svg class="w-5 h-5 text-white transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
                     </div>
-                    <button @click="next()" class="w-10 h-10 rounded-full bg-slate-900/80 border border-white/10 hover:bg-slate-900 flex items-center justify-center">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </button>
+
+                    <!-- Slide counter badge -->
+                    <div class="hidden sm:flex items-center gap-2 text-sm font-medium text-white/60">
+                        <span class="text-white font-bold text-lg" x-text="String(current + 1).padStart(2, '0')"></span>
+                        <span class="text-white/30">/</span>
+                        <span x-text="String(slides.length).padStart(2, '0')"></span>
+                    </div>
                 </div>
             </div>
         </div>

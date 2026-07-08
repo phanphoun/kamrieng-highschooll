@@ -17,7 +17,7 @@ class HeroSlideSeeder extends Seeder
                 'subtitle_kh' => 'បណ្ដុះបញ្ញា កសាងអនាគត',
                 'description_en' => 'Providing quality education to Cambodian students since 2005.',
                 'description_kh' => 'ផ្ដល់ការអប់រំប្រកបដោយគុណភាពដល់សិស្សានុសិស្សខ្មែរតាំងពីឆ្នាំ២០០៥',
-                'image_path' => '', // Empty -> uses Unsplash fallback from the view
+                'image_path' => '',
                 'btn_text_en' => 'Learn More',
                 'btn_text_kh' => 'ស្វែងយល់បន្ថែម',
                 'btn_link' => '/about',
@@ -31,7 +31,7 @@ class HeroSlideSeeder extends Seeder
                 'subtitle_kh' => 'ពង្រឹងសមត្ថភាពសិស្សដើម្បីជោគជ័យ',
                 'description_en' => 'Our dedicated faculty and modern facilities create an ideal learning environment.',
                 'description_kh' => 'សាស្ត្រាចារ្យដ៏លះបង់ និងបរិក្ខារទំនើបរបស់យើងបង្កើតបរិស្ថានសិក្សាដ៏ល្អឥតខ្ចោះ',
-                'image_path' => '', // Empty -> uses Unsplash fallback from the view
+                'image_path' => '',
                 'btn_text_en' => 'Our Programs',
                 'btn_text_kh' => 'កម្មវិធីសិក្សា',
                 'btn_link' => '/activities',
@@ -45,7 +45,7 @@ class HeroSlideSeeder extends Seeder
                 'subtitle_kh' => 'ឆ្នាំសិក្សា ២០២៥-២០២៦',
                 'description_en' => 'Applications are now open for the upcoming academic year.',
                 'description_kh' => 'ការដាក់ពាក្យចុះឈ្មោះឥឡូវនេះបើកសម្រាប់ឆ្នាំសិក្សាថ្មី',
-                'image_path' => '', // Empty -> uses Unsplash fallback from the view
+                'image_path' => '',
                 'btn_text_en' => 'Apply Today',
                 'btn_text_kh' => 'ដាក់ពាក្យថ្ងៃនេះ',
                 'btn_link' => '/enrollment',
