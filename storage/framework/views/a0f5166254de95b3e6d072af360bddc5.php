@@ -49,10 +49,26 @@
                 <a href="<?php echo e(route('search')); ?>" class="p-2 text-primary-100 hover:text-white transition">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </a>
-                <a href="<?php echo e(route('language.switch', app()->getLocale() === 'kh' ? 'en' : 'kh')); ?>" class="px-2 py-1 text-xs font-semibold border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-slate-900 transition">
-                    <?php echo e(app()->getLocale() === 'kh' ? 'EN' : 'ខ្មែរ'); ?>
-
-                </a>
+                <?php if (isset($component)) { $__componentOriginal5fa4d248de8c8d6b269c857972aebf01 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal5fa4d248de8c8d6b269c857972aebf01 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.public.language-toggle','data' => ['navbar' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('public.language-toggle'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['navbar' => true]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal5fa4d248de8c8d6b269c857972aebf01)): ?>
+<?php $attributes = $__attributesOriginal5fa4d248de8c8d6b269c857972aebf01; ?>
+<?php unset($__attributesOriginal5fa4d248de8c8d6b269c857972aebf01); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal5fa4d248de8c8d6b269c857972aebf01)): ?>
+<?php $component = $__componentOriginal5fa4d248de8c8d6b269c857972aebf01; ?>
+<?php unset($__componentOriginal5fa4d248de8c8d6b269c857972aebf01); ?>
+<?php endif; ?>
                 <a href="<?php echo e(route('contact')); ?>" class="px-5 py-2 bg-blue-600 text-white text-sm font-semibold rounded hover:bg-blue-700 transition shadow-sm">
                     <?php echo e(__('navigation.contact')); ?>
 
@@ -245,26 +261,29 @@
 <?php $component = $__componentOriginal7d9b8061a2b5f0583b87eb3b602dccb8; ?>
 <?php unset($__componentOriginal7d9b8061a2b5f0583b87eb3b602dccb8); ?>
 <?php endif; ?>
-            <?php if (isset($component)) { $__componentOriginal7d9b8061a2b5f0583b87eb3b602dccb8 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal7d9b8061a2b5f0583b87eb3b602dccb8 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.ui.mobile-nav-link','data' => ['href' => ''.e(route('language.switch', app()->getLocale() === 'kh' ? 'en' : 'kh')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('ui.mobile-nav-link'); ?>
+            <div class="pt-2 border-t border-slate-800">
+                <?php if (isset($component)) { $__componentOriginal5fa4d248de8c8d6b269c857972aebf01 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal5fa4d248de8c8d6b269c857972aebf01 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.public.language-toggle','data' => ['navbar' => true,'class' => 'w-full']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('public.language-toggle'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['href' => ''.e(route('language.switch', app()->getLocale() === 'kh' ? 'en' : 'kh')).'']); ?><?php echo e(app()->getLocale() === 'kh' ? 'EN' : 'ខ្មែរ'); ?> <?php echo $__env->renderComponent(); ?>
+<?php $component->withAttributes(['navbar' => true,'class' => 'w-full']); ?>
+<?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
-<?php if (isset($__attributesOriginal7d9b8061a2b5f0583b87eb3b602dccb8)): ?>
-<?php $attributes = $__attributesOriginal7d9b8061a2b5f0583b87eb3b602dccb8; ?>
-<?php unset($__attributesOriginal7d9b8061a2b5f0583b87eb3b602dccb8); ?>
+<?php if (isset($__attributesOriginal5fa4d248de8c8d6b269c857972aebf01)): ?>
+<?php $attributes = $__attributesOriginal5fa4d248de8c8d6b269c857972aebf01; ?>
+<?php unset($__attributesOriginal5fa4d248de8c8d6b269c857972aebf01); ?>
 <?php endif; ?>
-<?php if (isset($__componentOriginal7d9b8061a2b5f0583b87eb3b602dccb8)): ?>
-<?php $component = $__componentOriginal7d9b8061a2b5f0583b87eb3b602dccb8; ?>
-<?php unset($__componentOriginal7d9b8061a2b5f0583b87eb3b602dccb8); ?>
+<?php if (isset($__componentOriginal5fa4d248de8c8d6b269c857972aebf01)): ?>
+<?php $component = $__componentOriginal5fa4d248de8c8d6b269c857972aebf01; ?>
+<?php unset($__componentOriginal5fa4d248de8c8d6b269c857972aebf01); ?>
 <?php endif; ?>
+            </div>
         </div>
     </div>
 </nav>
-<?php /**PATH C:\Users\phanp\Desktop\kamrieng-highschooll\resources\views/components/public/public-nav.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\HUT SREYPOV\Desktop\kamrieng-highschooll\resources\views/components/public/public-nav.blade.php ENDPATH**/ ?>

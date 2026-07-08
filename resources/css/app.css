@@ -62,6 +62,11 @@
     }
 }
 
+/* Prevent Alpine.js flash before hydration */
+[x-cloak] {
+    display: none !important;
+}
+
 /* Page loading animation */
 .page-enter-active {
     transition: opacity 0.3s ease;

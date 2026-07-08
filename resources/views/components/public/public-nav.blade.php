@@ -47,9 +47,7 @@
                 <a href="{{ route('search') }}" class="p-2 text-primary-100 hover:text-white transition">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </a>
-                <a href="{{ route('language.switch', app()->getLocale() === 'kh' ? 'en' : 'kh') }}" class="px-2 py-1 text-xs font-semibold border border-yellow-400 text-yellow-400 rounded hover:bg-yellow-400 hover:text-slate-900 transition">
-                    {{ app()->getLocale() === 'kh' ? 'EN' : 'ខ្មែរ' }}
-                </a>
+                <x-public.language-toggle :navbar="true" />
                 <a href="{{ route('contact') }}" class="px-5 py-2 bg-blue-600 text-white text-sm font-semibold rounded hover:bg-blue-700 transition shadow-sm">
                     {{ __('navigation.contact') }}
                 </a>
@@ -79,7 +77,9 @@
             <x-ui.mobile-nav-link href="{{ route('enrollment.apply') }}">{{ __('navigation.enrollment') }}</x-ui.mobile-nav-link>
             <x-ui.mobile-nav-link href="{{ route('activities.index') }}">{{ __('navigation.activities') }}</x-ui.mobile-nav-link>
             <x-ui.mobile-nav-link href="{{ route('contact') }}">{{ __('navigation.contact') }}</x-ui.mobile-nav-link>
-            <x-ui.mobile-nav-link href="{{ route('language.switch', app()->getLocale() === 'kh' ? 'en' : 'kh') }}">{{ app()->getLocale() === 'kh' ? 'EN' : 'ខ្មែរ' }}</x-ui.mobile-nav-link>
+            <div class="pt-2 border-t border-slate-800">
+                <x-public.language-toggle :navbar="true" class="w-full" />
+            </div>
         </div>
     </div>
 </nav>
