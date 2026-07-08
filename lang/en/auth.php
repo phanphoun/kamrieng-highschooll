@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'failed' => 'These credentials do not match our records.',
+    'password' => 'The provided password is incorrect.',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'login' => 'Log in',
+    'register' => 'Register',
+    'logout' => 'Log out',
+    'email' => 'Email',
+    'name' => 'Full Name',
+    'password_field' => 'Password',
+    'confirm_password' => 'Confirm Password',
+    'remember_me' => 'Remember me',
+    'forgot_password' => 'Forgot your password?',
+    'reset_password' => 'Reset Password',
+    'new_password' => 'New Password',
+    'send_reset_link' => 'Send Password Reset Link',
+    'back_to_login' => 'Back to login',
+    'no_account' => "Don't have an account?",
+    'already_account' => 'Already have an account?',
+    'forgot_password_description' => 'Enter your email and we\'ll send you a link to reset your password.',
+    'verify_email' => 'Verify Your Email Address',
+    'verification_sent' => 'A fresh verification link has been sent to your email address.',
+    'check_email' => 'Before proceeding, please check your email for a verification link.',
+    'not_received' => 'If you did not receive the email',
+    'request_another' => 'click here to request another',
+];

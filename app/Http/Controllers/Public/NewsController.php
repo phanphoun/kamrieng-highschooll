@@ -4,72 +4,36 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\News;
-use App\Models\NewsCategory;
-use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
     /**
-     * Display a paginated list of published news articles.
+     * Display a listing of news articles.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $query = News::with('category')->published()->recent();
+        $news = News::published()->latest('published_at')->paginate(9);
+        $categories = News::published()->select('category')->distinct()->pluck('category');
 
-        // Filter by category slug
-        if ($request->filled('category')) {
-            $category = NewsCategory::where('slug', $request->category)->first();
-            if ($category) {
-                $query->where('category_id', $category->id);
-            }
-        }
-
-        // Search by title or body (check both languages)
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('title_en', 'like', "%{$search}%")
-                  ->orWhere('title_km', 'like', "%{$search}%")
-                  ->orWhere('body_en', 'like', "%{$search}%")
-                  ->orWhere('body_km', 'like', "%{$search}%");
-            });
-        }
-
-        $news = $query->paginate(6);
-
-        $categories = NewsCategory::all();
-
-        $featured = News::with('category')
-            ->published()
-            ->featured()
-            ->recent()
-            ->take(3)
-            ->get();
-
-        return view('public.news.index', compact('news', 'categories', 'featured'));
+        return view('public.pages.news.index', compact('news', 'categories'));
     }
 
     /**
      * Display the specified news article.
      */
-    public function show(News $news)
+    public function show($slug)
     {
-        if ($news->status !== 'published' || ($news->published_at && $news->published_at->isFuture())) {
-            abort(404);
-        }
+        $article = News::where('slug', $slug)->firstOrFail();
 
-        $relatedNews = News::with('category')
-            ->published()
-            ->where('id', '!=', $news->id)
-            ->where(function ($query) use ($news) {
-                if ($news->category_id) {
-                    $query->where('category_id', $news->category_id);
-                }
-            })
-            ->recent()
+        // Increment views
+        $article->increment('views_count');
+
+        $relatedNews = News::published()
+            ->where('id', '!=', $article->id)
+            ->where('category', $article->category)
             ->take(3)
             ->get();
 
-        return view('public.news.show', compact('news', 'relatedNews'));
+        return view('public.pages.news.show', compact('article', 'relatedNews'));
     }
 }

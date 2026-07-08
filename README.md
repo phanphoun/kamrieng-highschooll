@@ -1,4 +1,4 @@
-# EduBridge Cambodia
+# EduKhmer High School
 
 A comprehensive, bilingual (Khmer/English) school management and communications platform for Cambodian high schools — combining a premium public website with a full admin CMS.
 
@@ -6,154 +6,121 @@ A comprehensive, bilingual (Khmer/English) school management and communications 
 
 | Layer | Technology |
 |-------|-----------|
-| Backend | Laravel 12 (PHP 8.2+) |
-| Frontend | Laravel Blade + Tailwind CSS v4 + Alpine.js |
-| Database | MySQL / SQLite |
-| Build | Vite 7 |
-| Auth | Laravel built-in + role-based middleware |
+| Backend | Laravel 11 (PHP 8.2+) |
+| Frontend | Blade + Tailwind CSS v3 + Alpine.js |
+| Database | MySQL |
+| Build | Vite 5 |
+| Auth | Laravel Breeze + Spatie Permissions |
 | i18n | Bilingual (Khmer / English) |
 
-## Modules
+## Features
 
 ### Public Website
-| Module | Route | Issue |
-|--------|-------|-------|
-| Home | `/` | [#176](https://github.com/phanphoun/kamrieng-highschooll/issues/176) |
-| About | `/about` | [#177](https://github.com/phanphoun/kamrieng-highschooll/issues/177) |
-| News | `/news` | [#183](https://github.com/phanphoun/kamrieng-highschooll/issues/183) |
-| Gallery | `/gallery` | [#185](https://github.com/phanphoun/kamrieng-highschooll/issues/185) |
-| Events | `/calendar` | [#187](https://github.com/phanphoun/kamrieng-highschooll/issues/187) |
-| Activities | `/activities` | [#188](https://github.com/phanphoun/kamrieng-highschooll/issues/188) |
-| Achievements | `/achievements` | [#189](https://github.com/phanphoun/kamrieng-highschooll/issues/189) |
-| Faculty | `/faculty` | [#190](https://github.com/phanphoun/kamrieng-highschooll/issues/190) |
-| Leadership | `/leadership` | [#191](https://github.com/phanphoun/kamrieng-highschooll/issues/191) |
-| Downloads | `/downloads` | [#192](https://github.com/phanphoun/kamrieng-highschooll/issues/192) |
-| Enrollment | `/enrollment` | [#194](https://github.com/phanphoun/kamrieng-highschooll/issues/194) |
-| Notices | `/notices` | [#193](https://github.com/phanphoun/kamrieng-highschooll/issues/193) |
-| Donate | `/donate` | [#200](https://github.com/phanphoun/kamrieng-highschooll/issues/200) |
-| Contact | `/contact` | [#178](https://github.com/phanphoun/kamrieng-highschooll/issues/178) |
-| Search | `/search` | [#179](https://github.com/phanphoun/kamrieng-highschooll/issues/179) |
-| Site Map | `/sitemap` | [#180](https://github.com/phanphoun/kamrieng-highschooll/issues/180) |
+- Home page with hero slides and statistics
+- News articles with categories and featured posts
+- Activities and events calendar
+- Photo gallery with albums
+- Achievements showcase
+- Faculty/Leadership directory
+- Downloadable resources
+- Online enrollment application with tracking
+- Contact form
+- Full-text search
+- Bilingual EN/KH support
 
-### Admin Panel
-| Module | Issue |
-|--------|-------|
-| Dashboard | [#176](https://github.com/phanphoun/kamrieng-highschooll/issues/176) |
-| Statistics | [#198](https://github.com/phanphoun/kamrieng-highschooll/issues/198) |
-| Users | [#174](https://github.com/phanphoun/kamrieng-highschooll/issues/174) |
-| News | [#184](https://github.com/phanphoun/kamrieng-highschooll/issues/184) |
-| Gallery | [#186](https://github.com/phanphoun/kamrieng-highschooll/issues/186) |
-| Events | [#187](https://github.com/phanphoun/kamrieng-highschooll/issues/187) |
-| Activities | [#188](https://github.com/phanphoun/kamrieng-highschooll/issues/188) |
-| Achievements | [#189](https://github.com/phanphoun/kamrieng-highschooll/issues/189) |
-| Faculty | [#190](https://github.com/phanphoun/kamrieng-highschooll/issues/190) |
-| Leadership | [#191](https://github.com/phanphoun/kamrieng-highschooll/issues/191) |
-| Downloads | [#192](https://github.com/phanphoun/kamrieng-highschooll/issues/192) |
-| Enrollments | [#194](https://github.com/phanphoun/kamrieng-highschooll/issues/194) |
-| Notices | [#193](https://github.com/phanphoun/kamrieng-highschooll/issues/193) |
-| Messages | [#195](https://github.com/phanphoun/kamrieng-highschooll/issues/195) |
-| Hero Slides | [#181](https://github.com/phanphoun/kamrieng-highschooll/issues/181) |
-| Pages | [#177](https://github.com/phanphoun/kamrieng-highschooll/issues/177) |
-| Settings | [#196](https://github.com/phanphoun/kamrieng-highschooll/issues/196) |
-| Audit Logs | [#197](https://github.com/phanphoun/kamrieng-highschooll/issues/197) |
-
-## Sprint Plan
-
-| Sprint | Issues | Points | Focus |
-|--------|--------|--------|-------|
-| 1 | 9 | 26 | Auth, RBAC, Public Pages, Foundation |
-| 2 | 7 | 28 | News, Gallery, Events, Activities, Achievements |
-| 3 | 5 | 27 | Faculty, Leadership, Downloads, Notices, Enrollment |
-| 4 | 7 | 24 | Messages, Settings, Audit, Stats, i18n, Donate, Deploy |
+### Admin CMS
+- Dashboard with analytics
+- News management (CRUD)
+- Activity management
+- Achievement management
+- Gallery management with image uploads
+- Event calendar management
+- Notice board management
+- Download management
+- Hero slide management
+- Leadership profile management
+- Static page management
+- Enrollment application review workflow
+- Contact message inbox with reply
+- User management with roles (Admin, Editor, Viewer)
+- Site settings configuration
+- Audit logs
 
 ## Quick Start
 
-```bash
-git clone <repo-url>
-cd kamrieng-highschooll
+### Prerequisites
+- PHP 8.2+
+- Composer
+- Node.js & npm
+- MySQL
 
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone <repo-url>
+cd edukhmer
+
+# 2. Install PHP dependencies
 composer install
+
+# 3. Install Node dependencies
+npm install
+
+# 4. Environment setup
 cp .env.example .env
 php artisan key:generate
+
+# 5. Configure your database in .env
+# DB_DATABASE=edukhmer
+# DB_USERNAME=root
+# DB_PASSWORD=
+
+# 6. Run migrations and seeders
 php artisan migrate --seed
+
+# 7. Create storage link
 php artisan storage:link
 
-npm install
-npm run build
+# 8. Start development servers
 php artisan serve
+npm run dev
 ```
 
-Default login: `admin@example.com` / `password`
+### Default Credentials
+- **Admin**: admin@edukhmer.edu.kh / password
+- **Editor**: editor@edukhmer.edu.kh / password
 
-## Auth Endpoints
+## Project Structure
 
-### Guest routes
-
-| Method | URL | Description |
-|--------|-----|-------------|
-| GET | `/login` | Login form |
-| POST | `/login` | Validate credentials → role-based dashboard redirect |
-| GET | `/register` | Registration form (Admin / Content Editor roles) |
-| POST | `/register` | Create account → redirect to login |
-| GET | `/forgot-password` | Request a password reset code |
-| POST | `/forgot-password` | Email a 6-digit reset code (throttled) |
-| GET | `/reset-password` | Step 1 — enter the reset code |
-| POST | `/reset-password/verify` | Verify the code (throttled 6/min) |
-| GET | `/reset-password/new` | Step 2 — new password form (requires verified code) |
-| POST | `/reset-password` | Save the new password → redirect to login |
-
-### Authenticated routes
-
-| Method | URL | Description |
-|--------|-----|-------------|
-| POST | `/logout` | End the session |
-| GET | `/dashboard`, `/admin/dashboard`, `/teacher/dashboard`, `/student/dashboard`, `/parent/dashboard`, `/editor/dashboard` | Role dashboards (placeholders until US-03/T-11) |
-
-## Email Configuration (Password Reset Codes)
-
-Forgot-password emails the user a **6-digit reset code**, verified in a two-step flow:
-enter code → set new password. Codes are stored hashed, are single-use, expire after
-60 minutes, and requests are rate-limited.
-
-### Development (default — no setup needed)
-
-```env
-MAIL_MAILER=log
 ```
-
-Emails are not really sent; the reset code appears at the bottom of `storage/logs/laravel.log`.
-
-### Sending real email (Gmail SMTP)
-
-1. Enable **2-Step Verification** on the Google account that will send mail
-2. Create an **App Password**: https://myaccount.google.com/apppasswords
-3. Update your local `.env`:
-
-```env
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=your-address@gmail.com
-MAIL_PASSWORD=your-16-char-app-password
-MAIL_FROM_ADDRESS="your-address@gmail.com"
-MAIL_FROM_NAME="${APP_NAME}"
+edukhmer/
+├── app/
+│   ├── Http/Controllers/    # Public, Auth, and Admin controllers
+│   ├── Http/Middleware/      # Admin, Audit Log, Locale middleware
+│   ├── Models/              # 19 Eloquent models
+│   ├── Policies/            # Authorization policies
+│   ├── Services/            # Business logic services
+│   ├── Notifications/       # Email notifications
+│   └── Jobs/                # Queue jobs
+├── database/
+│   ├── migrations/          # 22 migration files
+│   ├── seeders/             # 15 seeder classes
+│   └── factories/           # Model factories
+├── lang/
+│   ├── en/                  # English translations
+│   └── kh/                  # Khmer translations
+├── resources/
+│   ├── views/               # Blade templates
+│   ├── css/                 # Tailwind CSS
+│   └── js/                  # Alpine.js + Chart.js
+├── routes/
+│   ├── web.php              # Web routes
+│   ├── api.php              # API routes
+│   └── console.php          # Schedule tasks
+└── tests/                   # Pest tests
 ```
-
-4. Apply it: `php artisan config:clear`
-
-The configured account is only the **sender** — reset codes are delivered to each user's own
-registered email address, on any provider.
-
-> ⚠️ Never commit `.env` or the app password. `.env.example` stays on `MAIL_MAILER=log`.
-
-## Documentation
-
-- [Sprint Plan](docs/sprint.md)
-- [Task Breakdown](docs/tasks.md)
-- [Project Roadmap](docs/roadmap.md)
-- [Team Contribution Guide](docs/team-contribute.md)
-- [Wiki](https://github.com/phanphoun/kamrieng-highschooll/wiki)
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the MIT license.

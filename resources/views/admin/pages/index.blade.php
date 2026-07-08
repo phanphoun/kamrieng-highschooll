@@ -1,0 +1,80 @@
+@extends('layouts.admin')
+
+@section('title', 'Pages')
+
+@section('content')
+    <div class="mb-8 flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">Pages</h1>
+            <p class="text-gray-600 mt-1">Manage static pages</p>
+        </div>
+        <a href="{{ route('admin.pages.create') }}" class="inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition">
+            <i class="fas fa-plus mr-2"></i>
+            Create Page
+        </a>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead>
+                    <tr class="bg-gray-50 border-b border-gray-200">
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Slug</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Template</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Show in Menu</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sort Order</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    @forelse($pages as $page)
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $page->title_en }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><code class="text-xs bg-gray-100 px-1.5 py-0.5 rounded">{{ $page->slug }}</code></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ ucfirst($page->template) }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <x-ui.badge variant="{{ $page->show_in_menu ? 'success' : 'default' }}">
+                                    {{ $page->show_in_menu ? 'Yes' : 'No' }}
+                                </x-ui.badge>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <x-ui.badge variant="{{ $page->is_published ? 'success' : 'default' }}">
+                                    {{ $page->is_published ? 'Published' : 'Draft' }}
+                                </x-ui.badge>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $page->sort_order }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <div class="flex items-center gap-3">
+                                    <a href="{{ route('admin.pages.edit', $page) }}" class="text-primary-600 hover:text-primary-800">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('admin.pages.destroy', $page) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600 hover:text-red-800">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7" class="px-6 py-12 text-center text-gray-500">
+                                <i class="fas fa-file text-4xl mb-3 text-gray-300"></i>
+                                <p>No pages found.</p>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        @if ($pages->hasPages())
+            <div class="px-6 py-4 border-t border-gray-200">
+                {{ $pages->links() }}
+            </div>
+        @endif
+    </div>
+@endsection

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\SiteSettings;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Share site settings with all views
+        View::composer('*', function ($view) {
+            $settings = SiteSettings::first();
+            $view->with('siteSettings', $settings);
+        });
     }
 }

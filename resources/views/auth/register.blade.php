@@ -1,61 +1,53 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
-@section('title', 'Register — Kamrieng High School')
+@section('title', __('auth.register'))
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-    <div class="w-full max-w-md bg-white rounded-xl shadow-md p-8">
-        <h1 class="text-2xl font-bold text-center text-gray-800">វិទ្យាល័យកំរៀង</h1>
-        <p class="text-center text-gray-500 mb-6">Create a staff account</p>
+    <h2 class="text-2xl font-bold text-gray-900 text-center mb-8">{{ __('auth.register') }}</h2>
 
-        <form method="POST" action="{{ route('register') }}" class="space-y-4">
-            @csrf
+    <form method="POST" action="{{ route('register') }}" class="space-y-6">
+        @csrf
 
-            <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus
-                       class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                @error('name')
-                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
+        <div>
+            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">{{ __('auth.name') }}</label>
+            <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus
+                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('name') border-red-500 @enderror">
+            @error('name')
+                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
 
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input id="email" type="email" name="email" value="{{ old('email') }}" required
-                       class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                @error('email')
-                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">{{ __('auth.email') }}</label>
+            <input id="email" type="email" name="email" value="{{ old('email') }}" required
+                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('email') border-red-500 @enderror">
+            @error('email')
+                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
 
-            <div>
-                <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Role</label>
-                <select id="role" name="role" required
-                        class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="" disabled {{ old('role') ? '' : 'selected' }}>Select a role</option>
-                    <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Admin</option>
-                    <option value="content_editor" {{ old('role') === 'content_editor' ? 'selected' : '' }}>Content Editor</option>
-                </select>
-                @error('role')
-                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
+        <div>
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">{{ __('auth.password') }}</label>
+            <input id="password" type="password" name="password" required
+                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('password') border-red-500 @enderror">
+            @error('password')
+                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
 
-            <x-password-input name="password" label="Password" />
+        <div>
+            <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-1">{{ __('auth.confirm_password') }}</label>
+            <input id="password_confirmation" type="password" name="password_confirmation" required
+                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+        </div>
 
-            <x-password-input name="password_confirmation" label="Confirm Password" />
+        <button type="submit" class="w-full px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition">
+            {{ __('auth.register') }}
+        </button>
 
-            <button type="submit"
-                    class="w-full rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700">
-                Register
-            </button>
-        </form>
-
-        <p class="mt-6 text-center text-sm text-gray-600">
-            Already have an account?
-            <a href="{{ route('login') }}" class="text-blue-600 hover:underline">Login</a>
+        <p class="text-center text-sm text-gray-600">
+            {{ __('auth.already_account') }}
+            <a href="{{ route('login') }}" class="text-primary-600 hover:text-primary-800 font-medium">{{ __('auth.login') }}</a>
         </p>
-    </div>
-</div>
+    </form>
 @endsection

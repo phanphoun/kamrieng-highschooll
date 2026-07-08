@@ -1,0 +1,54 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Faq;
+use Illuminate\Database\Seeder;
+
+class FaqSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $faqs = [
+            [
+                'question_en' => 'How do I apply for enrollment?',
+                'question_kh' => 'ធ្វើដូចម្តេចដើម្បីដាក់ពាក្យស្នើសុំចូលរៀន?',
+                'answer_en' => 'You can apply online through our Enrollment page. Fill out the application form and submit it. You will receive a tracking code to monitor your application status.',
+                'answer_kh' => 'អ្នកអាចដាក់ពាក្យតាមអ៊ីនធឺណិតតាមរយៈទំព័រចុះឈ្មោះចូលរៀនរបស់យើង។ បំពេញពាក្យសុំហើយដាក់ស្នើ។ អ្នកនឹងទទួលបានលេខកូដតាមដានដើម្បីតាមដានស្ថានភាពពាក្យសុំរបស់អ្នក។',
+                'sort_order' => 1,
+            ],
+            [
+                'question_en' => 'What documents are required for enrollment?',
+                'question_kh' => 'តើត្រូវការឯកសារអ្វីខ្លះសម្រាប់ការចុះឈ្មោះ?',
+                'answer_en' => 'Required documents include: birth certificate, previous school report cards, passport-sized photos, and a completed application form.',
+                'answer_kh' => 'ឯកសារដែលត្រូវការរួមមាន៖ សំបុត្រកំណើត វិញ្ញាបនបត្រសាលាមុន រូបថតទំហំលិខិតឆ្លងដែន និងទម្រង់ពាក្យសុំដែលបានបំពេញ។',
+                'sort_order' => 2,
+            ],
+            [
+                'question_en' => 'When does the academic year start?',
+                'question_kh' => 'ឆ្នាំសិក្សាចាប់ផ្តើមនៅពេលណា?',
+                'answer_en' => 'The academic year typically starts in October and runs through August. Specific dates are announced on our calendar page.',
+                'answer_kh' => 'ឆ្នាំសិក្សាជាធម្មតាចាប់ផ្តើមនៅខែតុលា និងបន្តរហូតដល់ខែសីហា។ កាលបរិច្ឆេទជាក់លាក់ត្រូវបានប្រកាសនៅលើទំព័រប្រតិទិនរបស់យើង។',
+                'sort_order' => 3,
+            ],
+            [
+                'question_en' => 'What extracurricular activities are offered?',
+                'question_kh' => 'តើមានសកម្មភាពក្រៅម៉ោងសិក្សាអ្វីខ្លះ?',
+                'answer_en' => 'We offer sports, music, debate, science club, art, community service, and many other extracurricular programs.',
+                'answer_kh' => 'យើងផ្តល់ជូននូវកីឡា តន្ត្រី ការជជែកដេញដោល ក្លឹបវិទ្យាសាស្ត្រ សិល្បៈ សេវាកម្មសហគមន៍ និងកម្មវិធីក្រៅម៉ោងសិក្សាជាច្រើនទៀត។',
+                'sort_order' => 4,
+            ],
+            [
+                'question_en' => 'How can I contact the school?',
+                'question_kh' => 'តើខ្ញុំអាចទាក់ទងសាលាដោយរបៀបណា?',
+                'answer_en' => 'You can contact us through the contact form on our website, by phone, or by visiting the school office during operating hours.',
+                'answer_kh' => 'អ្នកអាចទាក់ទងយើងតាមរយៈទម្រង់ទំនាក់ទំនងនៅលើគេហទំព័ររបស់យើង តាមទូរស័ព្ទ ឬដោយការមកកាន់ការិយាល័យសាលាក្នុងអំឡុងពេលម៉ោងប្រតិបត្តិការ។',
+                'sort_order' => 5,
+            ],
+        ];
+
+        foreach ($faqs as $faq) {
+            Faq::create($faq);
+        }
+    }
+}

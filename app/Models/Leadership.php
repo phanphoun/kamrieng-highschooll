@@ -2,65 +2,36 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Leadership extends Model
 {
-    use HasFactory;
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
     protected $table = 'leadership';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
-        'name_km',
         'name_en',
-        'position_km',
+        'name_kh',
         'position_en',
+        'position_kh',
         'photo',
-        'bio_km',
         'bio_en',
+        'bio_kh',
+        'email',
+        'phone',
         'sort_order',
+        'is_active',
     ];
 
-    /**
-     * Get the English name.
-     */
-    public function getNameAttribute()
+    protected function casts(): array
     {
-        return $this->name_en ?? $this->name_km;
+        return [
+            'sort_order' => 'integer',
+            'is_active' => 'boolean',
+        ];
     }
 
-    /**
-     * Get the English position.
-     */
-    public function getPositionAttribute()
+    public function scopeActive($query)
     {
-        return $this->position_en ?? $this->position_km;
-    }
-
-    /**
-     * Get the English bio.
-     */
-    public function getBioAttribute()
-    {
-        return $this->bio_en ?? $this->bio_km;
-    }
-
-    /**
-     * Scope to order by sort_order.
-     */
-    public function scopeOrdered($query)
-    {
-        return $query->orderBy('sort_order');
+        return $query->where('is_active', true)->orderBy('sort_order');
     }
 }

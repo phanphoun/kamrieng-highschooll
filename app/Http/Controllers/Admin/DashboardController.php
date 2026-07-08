@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\ContactMessage;
+use App\Models\EnrollmentApplication;
+use App\Models\News;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -13,13 +15,18 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $admin = Auth::user();
         $stats = [
-            'total_students' => \App\Models\User::where('role', 'student')->count(),
-            'total_teachers' => \App\Models\User::where('role', 'teacher')->count(),
-            'total_classes' => \App\Models\SchoolClass::count(),
-            'total_parents' => \App\Models\User::where('role', 'parent')->count(),
+            'total_users' => User::count(),
+            'total_news' => News::count(),
+            'total_enrollments' => EnrollmentApplication::count(),
+            'unread_messages' => ContactMessage::where('is_read', false)->count(),
         ];
-        return view('admin.dashboard', compact('admin', 'stats'));
+
+        $recentEnrollments = EnrollmentApplication::with('status')
+            ->latest()->take(5)->get();
+
+        $recentMessages = ContactMessage::latest()->take(5)->get();
+
+        return view('admin.dashboard', compact('stats', 'recentEnrollments', 'recentMessages'));
     }
 }

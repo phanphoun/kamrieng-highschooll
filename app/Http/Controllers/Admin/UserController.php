@@ -4,99 +4,72 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreUserRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    /**
-     * Display all users.
-     */
     public function index()
     {
-        $users = User::orderBy('name')->paginate(20);
-        return view('admin.users', compact('users'));
+        $users = User::with('roles')->latest()->paginate(20);
+        $roles = Role::all();
+        return view('admin.users.index', compact('users', 'roles'));
     }
 
-    /**
-     * Show the form for creating a new user.
-     */
     public function create()
     {
-        return view('admin.user-create');
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
-    /**
-     * Store a newly created user.
-     */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:admin,teacher,student,parent',
-            'phone' => 'nullable|string|max:20',
-            'address' => 'nullable|string|max:255',
+        $validated = $request->validated();
+
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'phone' => $validated['phone'] ?? null,
+            'is_active' => $validated['is_active'] ?? true,
         ]);
 
-        $validated['password'] = bcrypt($validated['password']);
-        User::create($validated);
+        $user->assignRole($validated['role']);
 
-        return redirect()->route('admin.users')->with('success', 'User created successfully.');
+        return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
     }
 
-    /**
-     * Display the specified user.
-     */
-    public function show($id)
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
-        return view('admin.user-detail', compact('user'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
-    /**
-     * Show the form for editing the specified user.
-     */
-    public function edit($id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $user = User::findOrFail($id);
-        return view('admin.user-edit', compact('user'));
-    }
-
-    /**
-     * Update the specified user.
-     */
-    public function update(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
-
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,'.$user->id,
-            'role' => 'required|in:admin,teacher,student,parent',
-            'phone' => 'nullable|string|max:20',
-            'address' => 'nullable|string|max:255',
-        ]);
+        $validated = $request->validated();
 
         if ($request->filled('password')) {
-            $request->validate([
-                'password' => 'string|min:8|confirmed',
-            ]);
-            $validated['password'] = bcrypt($request->password);
+            $validated['password'] = Hash::make($request->password);
+        } else {
+            unset($validated['password']);
         }
 
         $user->update($validated);
+        $user->syncRoles([$validated['role']]);
 
-        return redirect()->route('admin.users')->with('success', 'User updated successfully.');
+        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
     }
 
-    /**
-     * Remove the specified user.
-     */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
+        if ($user->id === auth()->id()) {
+            return back()->with('error', 'You cannot delete your own account.');
+        }
+
         $user->delete();
-        return redirect()->route('admin.users')->with('success', 'User deleted successfully.');
+        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
     }
 }
