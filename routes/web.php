@@ -43,7 +43,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/', [GalleryController::class, 'index'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/sitemap', [PageController::class, 'sitemap'])->name('sitemap');
 

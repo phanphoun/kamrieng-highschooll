@@ -14,11 +14,11 @@
 
 @layer components {
     .btn-primary {
-        @apply inline-flex items-center justify-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition duration-150;
+        @apply inline-flex items-center justify-center px-6 py-3 bg-school-blue text-white font-semibold rounded-lg hover:bg-school-blue-hover focus:outline-none focus:ring-2 focus:ring-school-blue focus:ring-offset-2 transition duration-150;
     }
 
     .btn-outline {
-        @apply inline-flex items-center justify-center px-6 py-3 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition duration-150;
+        @apply inline-flex items-center justify-center px-6 py-3 border-2 border-school-blue text-school-blue font-semibold rounded-lg hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-school-blue focus:ring-offset-2 transition duration-150;
     }
 
     .section-title {
@@ -70,6 +70,34 @@
 .page-enter-from {
     opacity: 0;
 }
+
+/* Scroll reveal animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.reveal-delay-100 { transition-delay: 0.1s; }
+.reveal-delay-200 { transition-delay: 0.2s; }
+.reveal-delay-300 { transition-delay: 0.3s; }
+.reveal-delay-400 { transition-delay: 0.4s; }
 
 /* Custom scrollbar for admin */
 .admin-scrollbar::-webkit-scrollbar {

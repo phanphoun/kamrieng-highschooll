@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Graduation ceremony illustration</title>
+  <desc id="desc">Graduation caps above a stage in school colors.</desc>
+  <rect width="1200" height="900" fill="#f8fafc"/>
+  <rect y="560" width="1200" height="340" fill="#192436"/>
+  <rect x="170" y="600" width="860" height="95" rx="18" fill="#086fd3"/>
+  <path d="M245 350l355-135 355 135-355 135z" fill="#192436"/>
+  <path d="M600 485l255-98v110c-120 82-300 82-510 0V387z" fill="#f7b316"/>
+  <path d="M955 350v190" stroke="#192436" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="955" cy="560" r="35" fill="#f7b316"/>
+  <circle cx="365" cy="750" r="50" fill="#f7b316"/>
+  <circle cx="600" cy="750" r="50" fill="#f7b316"/>
+  <circle cx="835" cy="750" r="50" fill="#f7b316"/>
+  <path d="M285 835c40-65 120-65 160 0M520 835c40-65 120-65 160 0M755 835c40-65 120-65 160 0" stroke="#9ca6b4" stroke-width="26" stroke-linecap="round"/>
+</svg>

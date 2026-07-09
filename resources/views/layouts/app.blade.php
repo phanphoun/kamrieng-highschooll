@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="data:,">
     <title>{{ $siteSettings?->school_name_en ?? 'EduKhmer High School' }} | @yield('title', __('messages.home'))</title>
     <meta name="description" content="@yield('meta_description', $siteSettings?->about_description_en ?? '')">
 

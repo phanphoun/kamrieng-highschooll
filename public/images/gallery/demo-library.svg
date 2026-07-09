@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Library illustration</title>
+  <desc id="desc">A tidy school library with shelves, books, and reading tables.</desc>
+  <rect width="1200" height="900" fill="#f8fafc"/>
+  <rect x="120" y="120" width="960" height="520" rx="18" fill="#192436"/>
+  <rect x="180" y="185" width="160" height="375" fill="#334155"/>
+  <rect x="390" y="185" width="160" height="375" fill="#334155"/>
+  <rect x="650" y="185" width="160" height="375" fill="#334155"/>
+  <rect x="860" y="185" width="160" height="375" fill="#334155"/>
+  <g fill="#f7b316">
+    <rect x="205" y="220" width="32" height="105"/><rect x="250" y="235" width="32" height="90"/><rect x="295" y="210" width="25" height="115"/>
+    <rect x="415" y="235" width="32" height="90"/><rect x="460" y="215" width="32" height="110"/><rect x="505" y="245" width="25" height="80"/>
+    <rect x="675" y="215" width="32" height="110"/><rect x="720" y="245" width="32" height="80"/><rect x="765" y="225" width="25" height="100"/>
+    <rect x="885" y="240" width="32" height="85"/><rect x="930" y="210" width="32" height="115"/><rect x="975" y="230" width="25" height="95"/>
+  </g>
+  <rect x="360" y="680" width="480" height="55" rx="12" fill="#086fd3"/>
+  <rect x="420" y="735" width="34" height="95" fill="#192436"/>
+  <rect x="746" y="735" width="34" height="95" fill="#192436"/>
+  <circle cx="600" cy="637" r="44" fill="#f7b316"/>
+</svg>

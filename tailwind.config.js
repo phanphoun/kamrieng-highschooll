@@ -22,6 +22,13 @@ export default {
                     900: '#713f12',
                     950: '#422006',
                 },
+                school: {
+                    navy: '#192436',
+                    gold: '#f7b316',
+                    blue: '#086fd3',
+                    'blue-hover': '#0757a8',
+                    muted: '#9ca6b4',
+                },
                 khmer: {
                     orange: '#f97316',
                     yellow: '#facc15',
